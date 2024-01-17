@@ -1,0 +1,40 @@
+import { Document, Types } from 'mongoose';
+
+export interface IUser extends Document {
+    fullName: string;
+    email: string;
+    password: string;
+    role: string;
+    dept: Types.ObjectId;
+    resetToken: string;
+    expireToken: string;
+    lastLoginTime: Date;
+    created_by: Types.ObjectId
+}
+
+export interface IDeptartment extends Document {
+    name: string;
+    hod: Types.ObjectId;
+}
+
+export interface ILocation extends Document {
+    name: string;
+}
+
+export interface IParticipant {
+    userId: Types.ObjectId;
+    status: string;
+    date: Date;
+}
+
+export interface IEvents extends Document {
+    title: string;
+    description: string;
+    location: Types.ObjectId;
+    startDate: Date;
+    endDate: Date; 
+    depts: Types.Array<IDeptartment>;
+    trainer:Types.ObjectId;
+    participants:Types.Array<IParticipant>
+}
+

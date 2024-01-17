@@ -1,0 +1,7 @@
+node_modules/
+logs/
+uploads/
+.nyc_output/
+build
+.env
+~
