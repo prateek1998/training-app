@@ -32,9 +32,17 @@ export interface IEvents extends Document {
     description: string;
     location: Types.ObjectId;
     startDate: Date;
-    endDate: Date; 
+    endDate: Date;
     depts: Types.Array<IDeptartment>;
-    trainer:Types.ObjectId;
-    participants:Types.Array<IParticipant>
+    trainer: Types.ObjectId;
+    participants: Types.Array<IParticipant>
 }
 
+/* 
+Service Layer response object interface
+this object will be used  by the  service layer 
+to return a response to controller layer 
+ */
+export interface IRepoResponse<T> {
+    response: T;
+}
