@@ -102,7 +102,55 @@
 		},
 		{
 			"name": "depts",
-			"item": []
+			"item": [
+				{
+					"name": "get all dept",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/depts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"depts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add new Dept",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deptName\": \"IT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/depts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"depts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [

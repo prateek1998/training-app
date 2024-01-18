@@ -37,10 +37,16 @@ export default class StatusMessage {
       update_failed: 'Failed to update the review',
       delete_failed: 'Failed to delete the review',
     },
+
+
   };
 
   static readonly ERROR_CODES = {
     internal_error_msg: [1001, StatusMessage.SERVER_ERRORS.internal_error, 500],
+
+    depts: {
+      add_db_error_msg:[]
+    },
 
     reviews: {
       information_not_provided_msg: [1002, StatusMessage.SERVER_ERRORS.reviews.update_failed, 400],

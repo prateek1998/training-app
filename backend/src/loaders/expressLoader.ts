@@ -11,7 +11,7 @@ import fs, { WriteStream } from 'fs';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import Logger from '../utils/winston.utils';
-import Routes from '../routes/v1/route-index';
+import v1RouteHandler from '../routes/v1/route-index';
 import rateLimit from '../middlewares/rateLimit';
 import swaggerUi from 'swagger-ui-express';
 // const swaggerDocument = require('./swagger-output.json');
@@ -50,7 +50,8 @@ export default class Express {
             res.setHeader('X-XSS-Protection', '1; mode=block');
             next();
         });
-        new Routes(this.app);
+        this.app.use("/api/v1", v1RouteHandler)
+        // new Routes(this.app);
         this.app
             .listen(this.serverPort, function () {
                 console.log(chalk.green.bold(`Server running on : http://localhost:${process.env.PORT}`));

@@ -1,20 +1,19 @@
 import { model, Schema } from 'mongoose';
-import { ILocation } from '../types';
+import { IDeptartment } from '../types';
 
-const LocationSchema: Schema = new Schema(
+const DepartmentSchema: Schema = new Schema(
     {
-        name: {
+        deptName: {
             type: String,
-            lowercase: true,
+            unique: true,
             required: true
+        },
+        deptHead: {
+            type: String
         },
         created_at: {
             type: Date,
             default: Date.now
-        },
-        created_by: {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
         },
         updated_at: {
             type: Date,
@@ -23,9 +22,9 @@ const LocationSchema: Schema = new Schema(
     }
 );
 
-LocationSchema.pre('save', function(next) {
+DepartmentSchema.pre('save', function (next) {
     this.updated_at = new Date;
     next();
 });
 
-export default model<ILocation>('users', LocationSchema)
+export default model<IDeptartment>('departments', DepartmentSchema)

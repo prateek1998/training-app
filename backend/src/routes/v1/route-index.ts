@@ -1,8 +1,19 @@
-import { Application } from 'express';
+import { Router } from 'express';
 import UserRoutes from './userRoutes';
+import DeptRoutes from './deptRoutes';
 
-export default class Routes {
-  constructor(app: Application) {
-    app.use('/api/v1/users', UserRoutes);
+class V1RouteHandler {
+  public router: Router;
+
+  constructor() {
+    this.router = Router();
+    this.initializeRoutes();
+  }
+
+  private initializeRoutes() {
+    this.router.use('/users', UserRoutes);
+    this.router.use('/depts', DeptRoutes);
   }
 }
+
+export default new V1RouteHandler().router;

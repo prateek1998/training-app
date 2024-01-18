@@ -7,8 +7,6 @@ class UserRoutes {
 
     // private static serverPort: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
     // private static accessLogStream: WriteStream = fs.createWriteStream(path.join(__dirname, '../logs/access.log'), { flags: 'a' });
-    
-    
     constructor(){
         this.intializeRoutes();
     }

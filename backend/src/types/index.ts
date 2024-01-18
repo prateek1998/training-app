@@ -13,8 +13,8 @@ export interface IUser extends Document {
 }
 
 export interface IDeptartment extends Document {
-    name: string;
-    hod: Types.ObjectId;
+    deptName: string;
+    deptHead: Types.ObjectId;
 }
 
 export interface ILocation extends Document {
