@@ -104,32 +104,13 @@
 			"name": "depts",
 			"item": [
 				{
-					"name": "get all dept",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/depts",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"depts"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "add new Dept",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"deptName\": \"IT\"\r\n}",
+							"raw": "{\r\n    \"deptName\": \"HR\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -145,6 +126,64 @@
 								"api",
 								"v1",
 								"depts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all depts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/depts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"depts"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "active",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "2023-02-23",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "2023-02-22",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "createdAt",
+									"disabled": true
+								},
+								{
+									"key": "sortOrder",
+									"value": "ASC",
+									"disabled": true
+								}
 							]
 						}
 					},

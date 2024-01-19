@@ -7,7 +7,7 @@ export default class DeptRepo {
     addNewDept(data:IDeptartment){
         return DeptModel.create(data);
     }
-    getAllDepts(){
+    getAllDepts(query:any){
         return DeptModel.find()
     }
 

@@ -5,55 +5,58 @@ import Logger from "../utils/winston.utils";
 import Status from "../utils/status-codes-messages.utils";
 import { Service } from 'typedi';
 import { IDeptartment } from '../types';
+import Constants from '../utils/constants.utils';
 
 @Service()
 class DeptController extends BaseController {
     constructor(private deptRepo: DeptRepo) {
         super();
     }
-    
+
     addNewDept = async (req: Request, res: Response) => {
         let data: IDeptartment = req.body;
-        console.log(data)
-        return
-        // let deptData: any = await this.deptRepo.getDeptByName(data.deptName).catch((reason) => {
-        //     console.error('addNewDept: Failed to get dept reason - ', reason);
-        //     Logger.error("addNewDept: " + reason);
-        //     return this.getDbError(reason);
-        //   });
-        
-        // if(deptData){
-        //     Logger.info("addNewDept: " + Status.SERVER_ERRORS.application.app_already_exist);
-        //     this.sendError(res, Status.ERROR_CODES.application.app_already_exist_msg);
-        //     return;   
-        // }
-        // console.log(deptData)
-        // return
         let deptData: any = await this.deptRepo.addNewDept(data).catch((reason) => {
             console.error('addNewDept: failed to add dept reason - ', reason);
             Logger.error("addNewDept: " + reason);
             return this.getDbError(reason);
         });
+        if (deptData.error) {
+            this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.depts.add_db_error_msg));
+            return;
+        }
+        let resultJson = this.removeKeyfromObject(deptData, '_id');
+        Logger.info('addNewReview: ' + Status.SERVER_SUCCESS.dept.data_added);
+        this.sendSuccess(res, Status.HTTP_CODES.CREATED, resultJson);
+    }
+
+    getAllDepts = async (req: Request, res: Response) => {
+        let reqQuery: any = req.query;
+        let queryError = this.checkQueryValidate(reqQuery);
+
+        if (queryError) {
+            Logger.error("getAllDepts: queryValidate: " + queryError);
+            let error = this.getQueryError(queryError);
+            this.sendError(res, this.getModifiedError(error, Status.ERROR_CODES.depts.get_db_error_msg));
+            return;
+        }
+
+        let deptData: any = await this.deptRepo.getAllDepts(reqQuery).catch((reason) => {
+            console.error('getAllDepts: Failed to get dept reason - ', reason);
+            Logger.error("getAllDepts: " + reason);
+            return this.getDbError(reason);
+        });
 
         if (deptData.error) {
-            // Logger.info("addNewDept: " + Status.SERVER_ERRORS.application.app_already_exist);
-            // this.sendError(res, Status.ERROR_CODES.application.app_already_exist_msg);
-            //     return;  
-            this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.reviews.add_db_error_msg));
+            this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.depts.get_db_error_msg));
+            return;
+        }
+        if (deptData.length == Constants.zeroLength) {
+            Logger.error("getAllDepts: " + Status.SERVER_ERRORS.depts.record_not_found);
+            this.sendError(res, Status.ERROR_CODES.depts.record_not_found_msg);
             return;
           }
-
-          
-        // console.log(result)
-        res.send("hi")
-
-        // console.log(this.userRepo.addNewUser(data))
-    }
-    getAllDepts = async (req: Request, res: Response) => {
-        let data = req.body;
-        console.log("dept2", data);
-
-        // console.log(this.userRepo.addNewUser(data))
+          Logger.info("getAllDepts: " + Status.SERVER_SUCCESS.dept.data_fetched);
+          this.sendSuccess(res, Status.HTTP_CODES.SUCCESS, deptData);
     }
 }
 

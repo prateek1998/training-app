@@ -51,7 +51,6 @@ export default class Express {
             next();
         });
         this.app.use("/api/v1", v1RouteHandler)
-        // new Routes(this.app);
         this.app
             .listen(this.serverPort, function () {
                 console.log(chalk.green.bold(`Server running on : http://localhost:${process.env.PORT}`));

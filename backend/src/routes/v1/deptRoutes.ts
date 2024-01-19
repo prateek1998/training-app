@@ -2,7 +2,6 @@ import Router, { Application } from 'express';
 import Container from 'typedi';
 import DeptController from '../../controllers/deptController';
 import DeptValidator from '../../validators/deptValidator';
-//  from '../../validators';
 
 class DeptRoutes {
     deptRouter: Application = Router();
