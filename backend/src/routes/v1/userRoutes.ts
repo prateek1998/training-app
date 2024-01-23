@@ -1,25 +1,25 @@
 import Router, { Application } from 'express';
-import UserController from '../../controllers/userController';
 import Container from 'typedi';
+import DeptController from '../../controllers/deptController';
+import DeptValidator from '../../validators/deptValidator';
+
 class UserRoutes {
-    userRouter: Application = Router();
-    private userCtrl = Container.get(UserController);
+  userRouter: Application = Router();
+  private deptCtrl = Container.get(DeptController);
+  private validator = Container.get(DeptValidator);
+  constructor() {
+    this.intializeRoutes();
+  }
 
-    // private static serverPort: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
-    // private static accessLogStream: WriteStream = fs.createWriteStream(path.join(__dirname, '../logs/access.log'), { flags: 'a' });
-    constructor(){
-        this.intializeRoutes();
-    }
-    intializeRoutes(){
-        this.userRouter.route('/').get()
-    //   .post(
-    //     (req, res, next) => this.classifyValidator.validateCreateBody(req, res, next),
-    //     (req, res) => this.classifyCtrl.addNewClassification(req, res)
-    //   )
-      .get((req, res) => console.log("first"));
+  intializeRoutes() {
+    this.userRouter.route('/')
+      .get(this.deptCtrl.getAllDepts)
+      .post(this.validator.validateCreateBody, this.deptCtrl.addNewDept);
 
-        // this.userRouter.route('/').get((req, res) => console.log("222"))
-    }
+    this.userRouter.route('/:deptId')
+      .put(this.validator.validateUpdateBody, this.deptCtrl.updateDept)
+      .delete(this.deptCtrl.deleteDept);
+  }
 }
 
 export default new UserRoutes().userRouter;

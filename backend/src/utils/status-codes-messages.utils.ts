@@ -40,6 +40,8 @@ export default class StatusMessage {
     depts: {
       name_not_found: 'Dept Name is missing',
       name_type: 'Dept name type should be string',
+      head_not_found: 'Dept Head is missing',
+      head_type: 'Dept Head Name type should be in proper format',
       add_failed: 'Failed to add new Dept',
       get_failed: 'Failed to fetch Dept',
       update_failed: 'Failed to update the Dept',
@@ -68,9 +70,9 @@ export default class StatusMessage {
       get_db_error_msg: [1055, StatusMessage.SERVER_ERRORS.depts.get_failed, 500],
       update_db_error_msg: [1056, StatusMessage.SERVER_ERRORS.depts.update_failed, 500],
       delete_db_error_msg: [1057, StatusMessage.SERVER_ERRORS.depts.delete_failed, 500],
-      record_not_found_msg:[1058, StatusMessage.SERVER_ERRORS.depts.get_failed, 500],
-  
-   
+      record_not_found_msg: [1058, StatusMessage.SERVER_ERRORS.depts.get_failed, 500],
+      head_not_found_msg: [1059, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
+      head_type_msg: [1060, StatusMessage.SERVER_ERRORS.depts.head_type, 400],
     },
 
     // reviews: {
@@ -105,6 +107,8 @@ export default class StatusMessage {
     validationError: 'MongoDBValidationError',
     accessDeniedError: 'MongoDBAccessDeniedError',
     MongoDBConnectionError: 'MongoDBConnectionError',
+    MongoDBDuplicateError: 'MongoServerError',
+    MongoDBCastError: 'CastError',
   };
 
   static readonly DB_LOGS = {

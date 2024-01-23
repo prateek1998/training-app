@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn server",
+    "start:dev": "npx nodemon",
     "build": "rimraf ./build && tsc",
     "start": "npm run build && node build/index.js",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
     "format": "prettier --config .prettierrc \"**/*.ts\" --write",
-    "swagger-dev": "ts-node-dev --respawn swagger"
+    "swagger-dev": "node --respawn swagger"
   },
   "author": "Prateek Saini",
   "license": "ISC",

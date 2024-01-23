@@ -36,10 +36,10 @@ export default class BaseResponse {
     delete this.response.message;
     res.status(statusCode).send(this.response);
   }
-  protected deleteFile(path: string){
+  protected deleteFile(path: string) {
     const isFileExist = existsSync(path);
     if (isFileExist) {
       fs.unlinkSync(path);
-    }      
+    }
   }
 }

@@ -4,25 +4,22 @@ import DeptController from '../../controllers/deptController';
 import DeptValidator from '../../validators/deptValidator';
 
 class DeptRoutes {
-    deptRouter: Application = Router();
-    private deptCtrl = Container.get(DeptController);
-    private validator = Container.get(DeptValidator)
-    constructor(){
-        this.intializeRoutes();
-    }
-    
-    intializeRoutes(){
-        this.deptRouter.route('/')
-            .get(this.deptCtrl.getAllDepts)
-            .post(this.validator.validateCreateBody, this.deptCtrl.addNewDept)
-    //   .post(
-    //     (req, res, next) => this.classifyValidator.validateCreateBody(req, res, next),
-    //     (req, res) => this.classifyCtrl.addNewClassification(req, res)
-    //   )
-    //   .get((req, res) => console.log("first"));
+  deptRouter: Application = Router();
+  private deptCtrl = Container.get(DeptController);
+  private validator = Container.get(DeptValidator);
+  constructor() {
+    this.intializeRoutes();
+  }
 
-        // this.userRouter.route('/').get((req, res) => console.log("222"))
-    }
+  intializeRoutes() {
+    this.deptRouter.route('/')
+      .get(this.deptCtrl.getAllDepts)
+      .post(this.validator.validateCreateBody, this.deptCtrl.addNewDept);
+
+    this.deptRouter.route('/:deptId')
+      .put(this.validator.validateUpdateBody, this.deptCtrl.updateDept)
+      .delete(this.deptCtrl.deleteDept);
+  }
 }
 
 export default new DeptRoutes().deptRouter;
