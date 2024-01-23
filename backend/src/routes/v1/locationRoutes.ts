@@ -13,12 +13,12 @@ class LocRoutes {
 
   intializeRoutes() {
     this.deptRouter.route('/')
-      .get(this.locCtrl.getAllDepts)
+      .get(this.locCtrl.getAllLocations)
       .post(this.validator.validateCreateBody, this.locCtrl.addNewLocation);
 
-    this.deptRouter.route('/:deptId')
-      .put(this.validator.validateUpdateBody, this.locCtrl.updateDept)
-      .delete(this.locCtrl.deleteDept);
+    this.deptRouter.route('/:locId')
+      .put(this.validator.validateUpdateBody, this.locCtrl.updateLocation)
+      .delete(this.locCtrl.deleteLocation);
   }
 }
 

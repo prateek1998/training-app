@@ -6,17 +6,18 @@ import Constants from '../utils/constants.utils';
 
 @Service()
 export default class LocationRepo extends BaseRepo {
-  private defaultSortingOrder = ['name', 'ASC'];
+  private defaultSortingOrder = ['title', 'ASC'];
   addNewLocation(data: ILocation) {
     return LocationModel.create(data);
   }
+
   getAllLocations(query: any) {
     let matchQuery: MatchObject<RegExp> = {};
     const limit: number = parseInt(query.limit) || Constants.limitLength;
     const skip: number = parseInt(query.skip) || Constants.skipLength;
 
     let regx: RegExp = new RegExp(query.search, 'i');
-    matchQuery['name'] = {
+    matchQuery['title'] = {
       $regex: regx,
     };
     let sort: SortObject = this.getSort(query, this.defaultSortingOrder);
@@ -26,6 +27,7 @@ export default class LocationRepo extends BaseRepo {
   updateLocation(locId: string, data: ILocation) {
     return LocationModel.findOneAndUpdate({ _id: locId }, { $set: data }, { new: true });
   }
+  
   deleteLocation(locId: string) {
     return LocationModel.deleteOne({ _id: locId })
   }

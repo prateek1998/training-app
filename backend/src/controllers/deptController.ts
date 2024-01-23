@@ -75,7 +75,7 @@ class DeptController extends BaseController {
       return;
     }
     let resultJson = this.removeKeyfromObject(deptData, '_id');
-    Logger.info('deleteDept: ' + Status.SERVER_SUCCESS.dept.data_added);
+    Logger.info('updateDept: ' + Status.SERVER_SUCCESS.dept.data_added);
     this.sendSuccess(res, Status.HTTP_CODES.SUCCESS, resultJson);
   };
 
