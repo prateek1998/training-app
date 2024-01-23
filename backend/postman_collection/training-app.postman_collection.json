@@ -110,7 +110,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"deptName\": \"HR\"\r\n}",
+							"raw": "{\r\n    \"deptName\": \"hq101\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -133,6 +133,17 @@
 				},
 				{
 					"name": "get all depts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -161,7 +172,7 @@
 							"query": [
 								{
 									"key": "type",
-									"value": "active",
+									"value": "all",
 									"disabled": true
 								},
 								{
@@ -176,13 +187,267 @@
 								},
 								{
 									"key": "sortBy",
-									"value": "createdAt",
+									"value": "created_at",
 									"disabled": true
 								},
 								{
 									"key": "sortOrder",
-									"value": "ASC",
+									"value": "DESC",
 									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "skip",
+									"value": "02",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "it2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update dept",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deptName\":\"prateek123\",\r\n    \"deptHead\":\"12asdasd\",\r\n    \"isActive\": true\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/depts/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"depts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "65ae6792588f684dee8e8824"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete dept",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/depts/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"depts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "65ae6792588f684dee8e8824"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "locations",
+			"item": [
+				{
+					"name": "add new Location",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deptName\": \"hq101\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/locations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all locations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/locations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "all",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "2023-02-23",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "2023-02-22",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "created_at",
+									"disabled": true
+								},
+								{
+									"key": "sortOrder",
+									"value": "DESC",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "skip",
+									"value": "02",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "it2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update location",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deptName\":\"prateek123\",\r\n    \"deptHead\":\"12asdasd\",\r\n    \"isActive\": true\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/locations/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "65ae6792588f684dee8e8824"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete location",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/locations/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "65ae6792588f684dee8e8824"
 								}
 							]
 						}

@@ -5,15 +5,16 @@ const LocationSchema: Schema = new Schema({
   name: {
     type: String,
     lowercase: true,
-    required: true,
+    unique: true,
+    required: true
   },
+  // created_by: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'User',
+  // },
   created_at: {
     type: Date,
     default: Date.now,
-  },
-  created_by: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
   },
   updated_at: {
     type: Date,

@@ -9,10 +9,6 @@ import { Types } from 'mongoose';
 
 @Service()
 export default class DeptValidator extends BaseValidator {
-  // private classifyNameMinLength = 3;
-  // private classifyNameMaxLength = 200;
-  // private ratingMinLimit = 1;
-  // private ratingMaxLimit = 5;
   constructor() {
     super();
   }
@@ -38,6 +34,7 @@ export default class DeptValidator extends BaseValidator {
     }
     next();
   };
+  
   validateUpdateBody: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     let body: IDeptartment = req.body;
     let deptName: string = body.deptName;

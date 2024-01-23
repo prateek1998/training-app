@@ -19,7 +19,7 @@ export interface IDeptartment extends Document {
 }
 
 export interface ILocation extends Document {
-  name: string;
+  locName: string;
 }
 
 export interface IParticipant {

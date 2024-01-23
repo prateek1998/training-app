@@ -57,6 +57,16 @@ export default class StatusMessage {
       // isNegative_type: 'isNegative type should be boolean',
       // invalid_id: 'Invalid Review Id',
     },
+    loc: {
+      name_not_found: 'Location Name is missing',
+      name_type: 'Location name type should be string',
+      name_length: 'Location Name length should be in 3 to 100 characters',
+      add_failed: 'Failed to add new Location',
+      get_failed: 'Failed to fetch Location',
+      update_failed: 'Failed to update the Location',
+      delete_failed: 'Failed to delete the Location',
+      record_not_found: 'Location record not found',
+    }
   };
 
   static readonly ERROR_CODES = {
@@ -74,9 +84,19 @@ export default class StatusMessage {
       head_not_found_msg: [1059, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
       head_type_msg: [1060, StatusMessage.SERVER_ERRORS.depts.head_type, 400],
     },
+    loc: {
+      information_not_provided_msg: [1061, StatusMessage.SERVER_ERRORS.loc.add_failed, 400],
+      name_not_found_msg: [1062, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
+      name_type_msg: [1063, StatusMessage.SERVER_ERRORS.loc.name_type, 400],
+      name_length_msg: [1064, StatusMessage.SERVER_ERRORS.loc.name_length, 400],
+      add_db_error_msg: [1065, StatusMessage.SERVER_ERRORS.depts.add_failed, 500],
+      get_db_error_msg: [1066, StatusMessage.SERVER_ERRORS.depts.get_failed, 500],
+      update_db_error_msg: [1067, StatusMessage.SERVER_ERRORS.depts.update_failed, 500],
+      delete_db_error_msg: [1068, StatusMessage.SERVER_ERRORS.depts.delete_failed, 500],
+      record_not_found_msg: [1069, StatusMessage.SERVER_ERRORS.depts.get_failed, 500]
+    },
 
     // reviews: {
-    //   name_length_msg: [1005, StatusMessage.SERVER_ERRORS.reviews.name_length, 400],
     //   review_type_msg: [1006, StatusMessage.SERVER_ERRORS.reviews.review_type, 400],
     //   review_not_found_msg: [1007, StatusMessage.SERVER_ERRORS.reviews.review_not_found, 400],
     //   rating_not_found_msg: [1008, StatusMessage.SERVER_ERRORS.reviews.rating_not_found, 400],
