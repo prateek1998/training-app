@@ -89,11 +89,11 @@ export default class StatusMessage {
       name_not_found_msg: [1062, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
       name_type_msg: [1063, StatusMessage.SERVER_ERRORS.loc.name_type, 400],
       name_length_msg: [1064, StatusMessage.SERVER_ERRORS.loc.name_length, 400],
-      add_db_error_msg: [1065, StatusMessage.SERVER_ERRORS.depts.add_failed, 500],
-      get_db_error_msg: [1066, StatusMessage.SERVER_ERRORS.depts.get_failed, 500],
-      update_db_error_msg: [1067, StatusMessage.SERVER_ERRORS.depts.update_failed, 500],
-      delete_db_error_msg: [1068, StatusMessage.SERVER_ERRORS.depts.delete_failed, 500],
-      record_not_found_msg: [1069, StatusMessage.SERVER_ERRORS.depts.get_failed, 500]
+      add_db_error_msg: [1065, StatusMessage.SERVER_ERRORS.loc.add_failed, 500],
+      get_db_error_msg: [1066, StatusMessage.SERVER_ERRORS.loc.get_failed, 500],
+      update_db_error_msg: [1067, StatusMessage.SERVER_ERRORS.loc.update_failed, 500],
+      delete_db_error_msg: [1068, StatusMessage.SERVER_ERRORS.loc.delete_failed, 500],
+      record_not_found_msg: [1069, StatusMessage.SERVER_ERRORS.loc.get_failed, 500]
     },
 
     // reviews: {
@@ -119,6 +119,12 @@ export default class StatusMessage {
       data_fetched: 'Depts data fetched successfully',
       data_updated: 'Dept data updated successfully',
       data_deleted: 'Dept data delete successfully',
+    },
+    loc: {
+      data_added: 'Location data saved successfully',
+      data_fetched: 'Locations data fetched successfully',
+      data_updated: 'Location data updated successfully',
+      data_deleted: 'Location data delete successfully',
     },
   };
 

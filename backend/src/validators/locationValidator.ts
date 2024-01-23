@@ -5,7 +5,6 @@ import BaseValidator from './baseValidator';
 import Logger from '../utils/winston.utils';
 import { Service } from 'typedi';
 import Constants from '../utils/constants.utils';
-import { Types } from 'mongoose';
 
 @Service()
 export default class LocationValidator extends BaseValidator {
@@ -17,24 +16,24 @@ export default class LocationValidator extends BaseValidator {
 
   validateCreateBody: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     let body: ILocation = req.body;
-    let locName: string = body.locName;
+    let title: string = body.title;
     if (Object.keys(body).length == Constants.zeroLength) {
       Logger.error('addNewLocation: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided);
       this.sendError(res, Status.ERROR_CODES.loc.information_not_provided_msg);
       return;
     }
-    if (!locName) {
+    if (!title) {
       Logger.error('addNewLocation: validateCreateBody: ' + Status.SERVER_ERRORS.loc.name_not_found);
       this.sendError(res, Status.ERROR_CODES.loc.name_not_found_msg);
       return;
     }
 
-    if (typeof locName != 'string') {
+    if (typeof title != 'string') {
       Logger.error('addNewLocation: validateCreateBody: ' + Status.SERVER_ERRORS.loc.name_type);
       this.sendError(res, Status.ERROR_CODES.loc.name_type_msg);
       return;
     }
-    let nameLen = locName.length;
+    let nameLen = title.length;
     if (nameLen < this.locNameMinLength || nameLen > this.locNameMaxLength) {
       Logger.error("addNewLocation: validateCreateBody: " + Status.SERVER_ERRORS.loc.name_length);
       this.sendError(res, Status.ERROR_CODES.loc.name_length_msg);
@@ -44,7 +43,7 @@ export default class LocationValidator extends BaseValidator {
   };
   validateUpdateBody: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     let body: ILocation = req.body;
-    let locName: string = body.locName;
+    let title: string = body.title;
     // let deptHead: Types.ObjectId = body.deptHead;
 
     if (Object.keys(body).length == Constants.zeroLength) {
@@ -52,13 +51,13 @@ export default class LocationValidator extends BaseValidator {
       this.sendError(res, Status.ERROR_CODES.depts.information_not_provided_msg);
       return;
     }
-    if (!locName) {
+    if (!title) {
       Logger.error('updateDept: validateUpdateBody: ' + Status.SERVER_ERRORS.depts.name_not_found);
       this.sendError(res, Status.ERROR_CODES.depts.name_not_found_msg);
       return;
     }
 
-    if (typeof locName != 'string') {
+    if (typeof title != 'string') {
       Logger.error('updateDept: validateUpdateBody: ' + Status.SERVER_ERRORS.depts.name_type);
       this.sendError(res, Status.ERROR_CODES.depts.name_type_msg);
       return;

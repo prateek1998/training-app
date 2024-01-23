@@ -21,11 +21,11 @@ class LocationController extends BaseController {
       return this.getDbError(reason);
     });
     if (locData.error) {
-      this.sendError(res, this.getModifiedError(locData, Status.ERROR_CODES.depts.add_db_error_msg));
+      this.sendError(res, this.getModifiedError(locData, Status.ERROR_CODES.loc.add_db_error_msg));
       return;
     }
     let resultJson = this.removeKeyfromObject(locData, '_id');
-    Logger.info('addNewLocation: ' + Status.SERVER_SUCCESS.dept.data_added);
+    Logger.info('addNewLocation: ' + Status.SERVER_SUCCESS.loc.data_added);
     this.sendSuccess(res, Status.HTTP_CODES.CREATED, resultJson);
   };
 

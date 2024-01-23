@@ -2,7 +2,7 @@ import { model, Schema } from 'mongoose';
 import { ILocation } from '../types';
 
 const LocationSchema: Schema = new Schema({
-  name: {
+  title: {
     type: String,
     lowercase: true,
     unique: true,
@@ -27,4 +27,4 @@ LocationSchema.pre('save', function (next) {
   next();
 });
 
-export default model<ILocation>('users', LocationSchema);
+export default model<ILocation>('locations', LocationSchema);
