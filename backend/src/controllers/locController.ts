@@ -61,12 +61,12 @@ class LocationController extends BaseController {
     const { locId }: any = req.params;
     let data: any = req.body;
     let locData: any = await this.locRepo.updateLocation(locId, data).catch((reason) => {
-      console.error('updateDept: failed to update location reason - ', reason);
-      Logger.error('updateDept: ' + reason);
+      console.error('updateLocation: failed to update location reason - ', reason);
+      Logger.error('updateLocation: ' + reason);
       return this.getDbError(reason);
     });
     if (!locData) {
-      Logger.error('updateDept: ' + Status.SERVER_ERRORS.loc.record_not_found);
+      Logger.error('updateLocation: ' + Status.SERVER_ERRORS.loc.record_not_found);
       this.sendError(res, Status.ERROR_CODES.loc.update_db_error_msg);
       return;
     }
@@ -75,33 +75,27 @@ class LocationController extends BaseController {
       return;
     }
     let resultJson = this.removeKeyfromObject(locData, '_id');
-    Logger.info('updateLocation: ' + Status.SERVER_SUCCESS.dept.data_added);
+    Logger.info('updateLocation: ' + Status.SERVER_SUCCESS.loc.data_updated);
     this.sendSuccess(res, Status.HTTP_CODES.SUCCESS, resultJson);
   };
 
   deleteLocation = async (req: Request, res: Response) => {
     const { locId }: any = req.params;
     let locData: any = await this.locRepo.deleteLocation(locId).catch((reason) => {
-      console.error('deleteDept: failed to delete location reason - ', reason);
-      Logger.error('deleteDept: ' + reason);
+      console.error('deleteLocation: failed to delete location reason - ', reason);
+      Logger.error('deleteLocation: ' + reason);
       return this.getDbError(reason);
     });
-    console.log(locData)
-    if (!locData) {
-      Logger.error('deleteDept: ' + Status.SERVER_ERRORS.loc.record_not_found);
-      this.sendError(res, Status.ERROR_CODES.loc.delete_db_error_msg);
-      return;
-    }
-    console.log("77" + locData)
     if (locData.error) {
       this.sendError(res, this.getModifiedError(locData, Status.ERROR_CODES.loc.delete_db_error_msg));
       return;
     }
-    console.log("7" + locData)
-    
-    let resultJson = this.removeKeyfromObject(locData, '_id');
-    Logger.info('deleteDept: ' + Status.SERVER_SUCCESS.dept.data_added);
-    this.sendSuccess(res, Status.HTTP_CODES.SUCCESS, resultJson);
+    if (locData.deletedCount) {
+      Logger.info('deleteLocation: ' + Status.SERVER_SUCCESS.loc.data_deleted);
+      this.sendSuccess(res, Status.HTTP_CODES.SUCCESS, null);
+    }
+    Logger.error('deleteLocation: ' + Status.SERVER_ERRORS.loc.record_not_found);
+    this.sendError(res, Status.ERROR_CODES.loc.delete_db_error_msg);
   };
 }
 
