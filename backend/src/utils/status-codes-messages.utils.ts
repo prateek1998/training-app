@@ -66,6 +66,21 @@ export default class StatusMessage {
       update_failed: 'Failed to update the Location',
       delete_failed: 'Failed to delete the Location',
       record_not_found: 'Location record not found',
+    },
+    users: {
+      name_not_found: 'Full Name is missing',
+      name_type: 'Full name type should be string',
+      email_not_found: 'Email is missing',
+      email_type: 'Email type should be string',
+      password_not_found: 'Password is missing',
+      password_length: 'Password length should be in 3 to 100 characters',
+      dept_not_found: 'Dept is missing',
+      dept_type: 'Dept type should be in proper format',
+      add_failed: 'Failed to add new User',
+      get_failed: 'Failed to fetch User',
+      update_failed: 'Failed to update the User',
+      delete_failed: 'Failed to delete the User',
+      record_not_found: 'User record not found',
     }
   };
 
@@ -94,6 +109,30 @@ export default class StatusMessage {
       update_db_error_msg: [1067, StatusMessage.SERVER_ERRORS.loc.update_failed, 500],
       delete_db_error_msg: [1068, StatusMessage.SERVER_ERRORS.loc.delete_failed, 500],
       record_not_found_msg: [1069, StatusMessage.SERVER_ERRORS.loc.get_failed, 500]
+    },
+    users: {
+      information_not_provided_msg: [1070, StatusMessage.SERVER_ERRORS.users.add_failed, 400],
+      name_not_found_msg: [1071, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
+      name_type_msg: [1072, StatusMessage.SERVER_ERRORS.users.name_type, 400],
+      email_not_found_msg: [1073, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
+      email_type_msg: [1074, StatusMessage.SERVER_ERRORS.users.email_type, 400],
+      password_not_found_msg: [1075, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
+      password_length_msg: [1076, StatusMessage.SERVER_ERRORS.users.password_length, 400],
+      dept_not_found_msg: [1077, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
+      dept_type_msg: [1060, StatusMessage.SERVER_ERRORS.users.dept_type, 400],
+
+
+      // name_not_found_msg: [1062, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
+      // name_type_msg: [1063, StatusMessage.SERVER_ERRORS.loc.name_type, 400],
+    
+   
+   
+      // name_length_msg: [1064, StatusMessage.SERVER_ERRORS.users.name_length, 400],
+      add_db_error_msg: [1065, StatusMessage.SERVER_ERRORS.users.add_failed, 500],
+      get_db_error_msg: [1066, StatusMessage.SERVER_ERRORS.users.get_failed, 500],
+      update_db_error_msg: [1067, StatusMessage.SERVER_ERRORS.users.update_failed, 500],
+      delete_db_error_msg: [1068, StatusMessage.SERVER_ERRORS.users.delete_failed, 500],
+      record_not_found_msg: [1069, StatusMessage.SERVER_ERRORS.users.get_failed, 500]
     },
 
     // reviews: {

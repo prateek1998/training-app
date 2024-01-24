@@ -1,24 +1,24 @@
 import Router, { Application } from 'express';
 import Container from 'typedi';
-import DeptController from '../../controllers/deptController';
-import DeptValidator from '../../validators/deptValidator';
+import UserController from '../../controllers/userController';
+import UserValidator from '../../validators/userValidator';
 
 class UserRoutes {
   userRouter: Application = Router();
-  private deptCtrl = Container.get(DeptController);
-  private validator = Container.get(DeptValidator);
+  private userCtrl = Container.get(UserController);
+  private validator = Container.get(UserValidator);
   constructor() {
     this.intializeRoutes();
   }
 
   intializeRoutes() {
-    this.userRouter.route('/')
-      .get(this.deptCtrl.getAllDepts)
-      .post(this.validator.validateCreateBody, this.deptCtrl.addNewDept);
+    this.userRouter.route('/register')
+      .post(this.validator.validateCreateBody, this.userCtrl.addNewUser);
+    // .get(this.userCtrl.getAllDepts)
 
-    this.userRouter.route('/:deptId')
-      .put(this.validator.validateUpdateBody, this.deptCtrl.updateDept)
-      .delete(this.deptCtrl.deleteDept);
+    // this.userRouter.route('/:deptId')
+    //   .put(this.validator.validateUpdateBody, this.userCtrl.updateDept)
+    //   .delete(this.userCtrl.deleteDept);
   }
 }
 
