@@ -1,6 +1,6 @@
 import { Service } from 'typedi';
 import BaseRepo from './baseRepository';
-import LocationModel from '../models/LocationModel'; 
+import LocationModel from '../models/LocationModel';
 import { ILocation, MatchObject, SortObject } from '../types';
 import Constants from '../utils/constants.utils';
 
@@ -27,8 +27,8 @@ export default class LocationRepo extends BaseRepo {
   updateLocation(locId: string, data: ILocation) {
     return LocationModel.findOneAndUpdate({ _id: locId }, { $set: data }, { new: true });
   }
-  
+
   deleteLocation(locId: string) {
-    return LocationModel.deleteOne({ _id: locId })
+    return LocationModel.deleteOne({ _id: locId });
   }
 }

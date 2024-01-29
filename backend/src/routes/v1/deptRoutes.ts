@@ -12,14 +12,10 @@ class DeptRoutes {
   }
 
   intializeRoutes() {
-    this.deptRouter.route('/')
-      .get(this.deptCtrl.getAllDepts)
-      .post(this.validator.validateCreateBody, this.deptCtrl.addNewDept);
+    this.deptRouter.route('/').get(this.deptCtrl.getAllDepts).post(this.validator.validateCreateBody, this.deptCtrl.addNewDept);
 
-    this.deptRouter.route('/:deptId')
-      .put(this.validator.validateUpdateBody, this.deptCtrl.updateDept)
-      .delete(this.deptCtrl.deleteDept);
+    this.deptRouter.route('/:deptId').put(this.validator.validateUpdateBody, this.deptCtrl.updateDept).delete(this.deptCtrl.deleteDept);
   }
 }
-
+  
 export default new DeptRoutes().deptRouter;

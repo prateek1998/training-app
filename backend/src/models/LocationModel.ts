@@ -6,7 +6,7 @@ const LocationSchema: Schema = new Schema({
     type: String,
     lowercase: true,
     unique: true,
-    required: true
+    required: true,
   },
   // created_by: {
   //   type: Schema.Types.ObjectId,
@@ -27,4 +27,4 @@ LocationSchema.pre('save', function (next) {
   next();
 });
 
-export default model<ILocation>('locations', LocationSchema);
+export default model<ILocation>('Location', LocationSchema);

@@ -3,15 +3,20 @@ import BaseRepo from './baseRepository';
 import DeptModel from '../models/DepartmentModel';
 import { IDeptartment, MatchObject, SortObject } from '../types';
 import Constants from '../utils/constants.utils';
+import { Types } from 'mongoose';
 
 @Service()
 export default class DeptRepo extends BaseRepo {
   private defaultSortingOrder = ['deptName', 'ASC'];
-  
+
   addNewDept(data: IDeptartment) {
     return DeptModel.create(data);
   }
-  
+
+  getDeptById(deptId: Types.ObjectId) {
+    return DeptModel.findOne({_id: deptId});
+  }
+
   getAllDepts(query: any) {
     let matchQuery: MatchObject<RegExp> = {};
     const limit: number = parseInt(query.limit) || Constants.limitLength;
@@ -29,7 +34,7 @@ export default class DeptRepo extends BaseRepo {
   updateDept(deptId: string, data: IDeptartment) {
     return DeptModel.findOneAndUpdate({ _id: deptId }, { $set: data }, { new: true });
   }
- 
+
   deleteDept(deptId: string) {
     let data = {
       isActive: false,

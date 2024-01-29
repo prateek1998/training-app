@@ -7,7 +7,7 @@ import Constants from '../utils/constants.utils';
 @Service()
 export default class UserRepo extends BaseRepo {
   private defaultSortingOrder = ['fullName', 'ASC'];
-  
+
   addNewUser(data: IUser) {
     return UserModel.create(data);
   }

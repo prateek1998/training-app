@@ -5,7 +5,7 @@ export interface IUser extends Document {
   email: string;
   password: string;
   role: string;
-  dept: Types.ObjectId;
+  deptId: Types.ObjectId;
   resetToken: string;
   expireToken: string;
   lastLoginTime: Date;

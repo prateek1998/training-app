@@ -40,6 +40,10 @@ const UserSchema: Schema = new Schema({
     type: Date,
     default: Date.now,
   },
+  deptId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Deptarment',
+  },
   created_by: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -55,4 +59,4 @@ UserSchema.pre('save', function (next) {
   next();
 });
 
-export default model<IUser>('users', UserSchema);
+export default model<IUser>('User', UserSchema);

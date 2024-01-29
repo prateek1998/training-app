@@ -34,7 +34,7 @@ export default class LocationValidator extends BaseValidator {
     }
     let nameLen = title.length;
     if (nameLen < this.locNameMinLength || nameLen > this.locNameMaxLength) {
-      Logger.error("addNewLocation: validateCreateBody: " + Status.SERVER_ERRORS.loc.name_length);
+      Logger.error('addNewLocation: validateCreateBody: ' + Status.SERVER_ERRORS.loc.name_length);
       this.sendError(res, Status.ERROR_CODES.loc.name_length_msg);
       return;
     }
@@ -60,7 +60,7 @@ export default class LocationValidator extends BaseValidator {
     }
     let nameLen = title.length;
     if (nameLen < this.locNameMinLength || nameLen > this.locNameMaxLength) {
-      Logger.error("updateLocation: validateUpdateBody: " + Status.SERVER_ERRORS.loc.name_length);
+      Logger.error('updateLocation: validateUpdateBody: ' + Status.SERVER_ERRORS.loc.name_length);
       this.sendError(res, Status.ERROR_CODES.loc.name_length_msg);
       return;
     }

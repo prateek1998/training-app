@@ -34,7 +34,7 @@ export default class DeptValidator extends BaseValidator {
     }
     next();
   };
-  
+
   validateUpdateBody: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     let body: IDeptartment = req.body;
     let deptName: string = body.deptName;

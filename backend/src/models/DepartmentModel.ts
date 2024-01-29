@@ -29,4 +29,4 @@ DepartmentSchema.pre('save', function (next) {
   next();
 });
 
-export default model<IDeptartment>('departments', DepartmentSchema);
+export default model<IDeptartment>('Department', DepartmentSchema);

@@ -1,6 +1,7 @@
 import { Response, Request, NextFunction } from 'express';
 import BaseController from './baseController';
 import UserRepo from '../repositories/userRepository';
+import DeptRepo from '../repositories/deptRepository';
 import Logger from '../utils/winston.utils';
 import Status from '../utils/status-codes-messages.utils';
 import { Service } from 'typedi';
@@ -9,23 +10,41 @@ import Constants from '../utils/constants.utils';
 
 @Service()
 class UserController extends BaseController {
-  constructor(private userRepo: UserRepo) {
+  constructor(private userRepo: UserRepo, private deptRepo: DeptRepo) {
     super();
   }
 
   addNewUser = async (req: Request, res: Response) => {
     let data: IUser = req.body;
-    let deptData: any = await this.userRepo.addNewUser(data).catch((reason) => {
-      console.error('addNewDept: failed to add dept reason - ', reason);
-      Logger.error('addNewDept: ' + reason);
+    let deptId = data.deptId;
+    let deptData: any = await this.deptRepo.getDeptById(deptId).catch((reason) => {
+      console.error('addNewUser: failed to get dept reason - ', reason);
+      Logger.error('addNewUser: ' + reason);
       return this.getDbError(reason);
     });
-    if (deptData.error) {
-      this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.depts.add_db_error_msg));
+    if (!deptData) {
+      Logger.error('addNewUser: ' + Status.SERVER_ERRORS.depts.record_not_found);
+      this.sendError(res, Status.ERROR_CODES.depts.record_not_found_msg);
       return;
     }
-    let resultJson = this.removeKeyfromObject(deptData, '_id');
-    Logger.info('addNewDept: ' + Status.SERVER_SUCCESS.dept.data_added);
+    if (deptData.error) {
+      this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.users.add_db_error_msg));
+      return;
+    }
+    console.log(deptData)
+    res.send(deptData)
+    return
+    let userData: any = await this.userRepo.addNewUser(data).catch((reason) => {
+      console.error('addNewUser: failed to add user reason - ', reason);
+      Logger.error('addNewUser: ' + reason);
+      return this.getDbError(reason);
+    });
+    if (userData.error) {
+      this.sendError(res, this.getModifiedError(userData, Status.ERROR_CODES.users.add_db_error_msg));
+      return;
+    }
+    let resultJson = this.removeKeyfromObject(userData, '_id');
+    Logger.info('addNewUser: ' + Status.SERVER_SUCCESS.user.data_added);
     this.sendSuccess(res, Status.HTTP_CODES.CREATED, resultJson);
   };
 

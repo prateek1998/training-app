@@ -81,7 +81,7 @@ export default class StatusMessage {
       update_failed: 'Failed to update the User',
       delete_failed: 'Failed to delete the User',
       record_not_found: 'User record not found',
-    }
+    },
   };
 
   static readonly ERROR_CODES = {
@@ -108,7 +108,7 @@ export default class StatusMessage {
       get_db_error_msg: [1066, StatusMessage.SERVER_ERRORS.loc.get_failed, 500],
       update_db_error_msg: [1067, StatusMessage.SERVER_ERRORS.loc.update_failed, 500],
       delete_db_error_msg: [1068, StatusMessage.SERVER_ERRORS.loc.delete_failed, 500],
-      record_not_found_msg: [1069, StatusMessage.SERVER_ERRORS.loc.get_failed, 500]
+      record_not_found_msg: [1069, StatusMessage.SERVER_ERRORS.loc.get_failed, 500],
     },
     users: {
       information_not_provided_msg: [1070, StatusMessage.SERVER_ERRORS.users.add_failed, 400],
@@ -121,18 +121,15 @@ export default class StatusMessage {
       dept_not_found_msg: [1077, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
       dept_type_msg: [1060, StatusMessage.SERVER_ERRORS.users.dept_type, 400],
 
-
       // name_not_found_msg: [1062, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
       // name_type_msg: [1063, StatusMessage.SERVER_ERRORS.loc.name_type, 400],
-    
-   
-   
+
       // name_length_msg: [1064, StatusMessage.SERVER_ERRORS.users.name_length, 400],
       add_db_error_msg: [1065, StatusMessage.SERVER_ERRORS.users.add_failed, 500],
       get_db_error_msg: [1066, StatusMessage.SERVER_ERRORS.users.get_failed, 500],
       update_db_error_msg: [1067, StatusMessage.SERVER_ERRORS.users.update_failed, 500],
       delete_db_error_msg: [1068, StatusMessage.SERVER_ERRORS.users.delete_failed, 500],
-      record_not_found_msg: [1069, StatusMessage.SERVER_ERRORS.users.get_failed, 500]
+      record_not_found_msg: [1069, StatusMessage.SERVER_ERRORS.users.get_failed, 500],
     },
 
     // reviews: {
@@ -165,6 +162,13 @@ export default class StatusMessage {
       data_updated: 'Location data updated successfully',
       data_deleted: 'Location data delete successfully',
     },
+    user: {
+      data_added: 'User data saved successfully',
+      data_fetched: 'Users data fetched successfully',
+      data_updated: 'User data updated successfully',
+      data_deleted: 'User data delete successfully',
+    },
+    
   };
 
   static readonly DB_ERRORS = {
