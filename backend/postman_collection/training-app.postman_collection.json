@@ -10,32 +10,91 @@
 			"name": "users",
 			"item": [
 				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "register admin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "  {\r\n    \"fullName\": \"Prateek Saini\",\r\n    \"email\":\"prateek.saini@nebulaholdings.co\",\r\n    \"password\": \"prateek123\",\r\n    \"deptId\": \"65b65e768d7efcda99108ea4\"\r\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/users/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login user",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "  {\r\n    \"fullName\": \"Prateek Sa2ini\",\r\n    \"email\":\"prateek.saini@nebulaholdings.co\",\r\n    \"password\": \"prateek123\",\r\n    \"deptId\": \"65b65e768d7efcda99108ea4\"\r\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/users/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"register"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "get all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/users",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add new user",
-					"request": {
-						"method": "POST",
-						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fullName\":\"Prateek Saini\",\r\n    \"email\": \"prateek.saini@nebulaholdings.co\",\r\n    \"dept\":\"\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -43,14 +102,84 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/users",
+							"raw": "{{baseUrl}}/api/v1/depts?sortBy=deptName&sortOrder=ASC",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"users"
+								"depts"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "all",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "2023-02-23",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "2023-02-22",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "deptName"
+								},
+								{
+									"key": "sortOrder",
+									"value": "ASC"
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "skip",
+									"value": "02",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "R",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"fullName\": \"Prateek Saini\",\r\n    \"email\":\"prateek.saini@nebulaholdings.co\",\r\n    \"password\": \"prateek123\",\r\n    \"deptId\": \"65b65e768d7efcda99108ea4\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"auth",
+								"register"
 							]
 						}
 					},
@@ -160,7 +289,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/depts",
+							"raw": "{{baseUrl}}/api/v1/depts?sortBy=deptName&sortOrder=ASC",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -187,13 +316,11 @@
 								},
 								{
 									"key": "sortBy",
-									"value": "created_at",
-									"disabled": true
+									"value": "deptName"
 								},
 								{
 									"key": "sortOrder",
-									"value": "DESC",
-									"disabled": true
+									"value": "ASC"
 								},
 								{
 									"key": "limit",
@@ -207,7 +334,7 @@
 								},
 								{
 									"key": "search",
-									"value": "it2",
+									"value": "R",
 									"disabled": true
 								}
 							]
@@ -288,7 +415,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"deptName\": \"hq101\"\r\n}",
+							"raw": "{\r\n    \"title\": \"HQ Office\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -338,7 +465,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/locations",
+							"raw": "{{baseUrl}}/api/v1/locations?sortBy=title&sortOrder=ASC",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -365,13 +492,11 @@
 								},
 								{
 									"key": "sortBy",
-									"value": "created_at",
-									"disabled": true
+									"value": "title"
 								},
 								{
 									"key": "sortOrder",
-									"value": "DESC",
-									"disabled": true
+									"value": "ASC"
 								},
 								{
 									"key": "limit",
@@ -400,7 +525,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"deptName\":\"prateek123\",\r\n    \"deptHead\":\"12asdasd\",\r\n    \"isActive\": true\r\n    \r\n}",
+							"raw": "{\r\n  \"title\":\"2sa\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -421,7 +546,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "65ae6792588f684dee8e8824"
+									"value": "65b014ca1c58d3e53efb94a6"
 								}
 							]
 						}
