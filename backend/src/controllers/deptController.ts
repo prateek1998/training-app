@@ -21,7 +21,10 @@ class DeptController extends BaseController {
       return this.getDbError(reason);
     });
     if (deptData.error) {
-      this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.depts.add_db_error_msg));
+      this.sendError(
+        res,
+        this.getModifiedError(deptData, Status.ERROR_CODES.depts.add_db_error_msg)
+      );
       return;
     }
     let resultJson = this.removeKeyfromObject(deptData, '_id');
@@ -45,7 +48,10 @@ class DeptController extends BaseController {
       return this.getDbError(reason);
     });
     if (deptData.error) {
-      this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.depts.get_db_error_msg));
+      this.sendError(
+        res,
+        this.getModifiedError(deptData, Status.ERROR_CODES.depts.get_db_error_msg)
+      );
       return;
     }
     if (deptData.length == Constants.zeroLength) {
@@ -71,7 +77,10 @@ class DeptController extends BaseController {
       return;
     }
     if (deptData.error) {
-      this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.depts.update_db_error_msg));
+      this.sendError(
+        res,
+        this.getModifiedError(deptData, Status.ERROR_CODES.depts.update_db_error_msg)
+      );
       return;
     }
     let resultJson = this.removeKeyfromObject(deptData, '_id');
@@ -92,7 +101,10 @@ class DeptController extends BaseController {
       return;
     }
     if (deptData.error) {
-      this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.depts.delete_db_error_msg));
+      this.sendError(
+        res,
+        this.getModifiedError(deptData, Status.ERROR_CODES.depts.delete_db_error_msg)
+      );
       return;
     }
     let resultJson = this.removeKeyfromObject(deptData, '_id');

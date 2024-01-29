@@ -70,6 +70,8 @@ export default class StatusMessage {
     users: {
       name_not_found: 'Full Name is missing',
       name_type: 'Full name type should be string',
+      user_already_exist: 'User already exist',
+      user_password_not_same: 'User Password not Same',
       email_not_found: 'Email is missing',
       email_type: 'Email type should be string',
       password_not_found: 'Password is missing',
@@ -120,16 +122,13 @@ export default class StatusMessage {
       password_length_msg: [1076, StatusMessage.SERVER_ERRORS.users.password_length, 400],
       dept_not_found_msg: [1077, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
       dept_type_msg: [1060, StatusMessage.SERVER_ERRORS.users.dept_type, 400],
-
-      // name_not_found_msg: [1062, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
-      // name_type_msg: [1063, StatusMessage.SERVER_ERRORS.loc.name_type, 400],
-
-      // name_length_msg: [1064, StatusMessage.SERVER_ERRORS.users.name_length, 400],
       add_db_error_msg: [1065, StatusMessage.SERVER_ERRORS.users.add_failed, 500],
       get_db_error_msg: [1066, StatusMessage.SERVER_ERRORS.users.get_failed, 500],
       update_db_error_msg: [1067, StatusMessage.SERVER_ERRORS.users.update_failed, 500],
       delete_db_error_msg: [1068, StatusMessage.SERVER_ERRORS.users.delete_failed, 500],
       record_not_found_msg: [1069, StatusMessage.SERVER_ERRORS.users.get_failed, 500],
+      user_already_exist: [1070, StatusMessage.SERVER_ERRORS.users.add_failed, 500],
+      user_password_not_same: [1071, StatusMessage.SERVER_ERRORS.users.add_failed, 500],
     },
 
     // reviews: {
@@ -164,11 +163,11 @@ export default class StatusMessage {
     },
     user: {
       data_added: 'User data saved successfully',
+      logined: 'User loginned successfully',
       data_fetched: 'Users data fetched successfully',
       data_updated: 'User data updated successfully',
       data_deleted: 'User data delete successfully',
     },
-    
   };
 
   static readonly DB_ERRORS = {

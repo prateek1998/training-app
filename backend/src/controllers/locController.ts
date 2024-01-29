@@ -71,7 +71,10 @@ class LocationController extends BaseController {
       return;
     }
     if (locData.error) {
-      this.sendError(res, this.getModifiedError(locData, Status.ERROR_CODES.loc.update_db_error_msg));
+      this.sendError(
+        res,
+        this.getModifiedError(locData, Status.ERROR_CODES.loc.update_db_error_msg)
+      );
       return;
     }
     let resultJson = this.removeKeyfromObject(locData, '_id');
@@ -87,7 +90,10 @@ class LocationController extends BaseController {
       return this.getDbError(reason);
     });
     if (locData.error) {
-      this.sendError(res, this.getModifiedError(locData, Status.ERROR_CODES.loc.delete_db_error_msg));
+      this.sendError(
+        res,
+        this.getModifiedError(locData, Status.ERROR_CODES.loc.delete_db_error_msg)
+      );
       return;
     }
     if (locData.deletedCount) {

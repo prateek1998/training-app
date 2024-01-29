@@ -14,7 +14,7 @@ export default class DeptRepo extends BaseRepo {
   }
 
   getDeptById(deptId: Types.ObjectId) {
-    return DeptModel.findOne({_id: deptId});
+    return DeptModel.findOne({ _id: deptId });
   }
 
   getAllDepts(query: any) {

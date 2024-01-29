@@ -38,7 +38,8 @@ export default class BaseRepo {
         tmpOrder[query.sortBy] = 1;
         break;
       default:
-        tmpOrder[defaultSorting[Constants.zeroLength]] = defaultSorting[Constants.oneLength] == 'ASC' ? 1 : -1;
+        tmpOrder[defaultSorting[Constants.zeroLength]] =
+          defaultSorting[Constants.oneLength] == 'ASC' ? 1 : -1;
         break;
     }
     return tmpOrder;

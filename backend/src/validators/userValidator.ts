@@ -15,7 +15,11 @@ export default class UserValidator extends BaseValidator {
     super();
   }
 
-  validateCreateBody: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+  validateAdminCreateBody: RequestHandler = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
     let body: IUser = req.body;
     let fullName: string = body.fullName;
     let email: string = body.email;
@@ -23,7 +27,9 @@ export default class UserValidator extends BaseValidator {
     let deptId: Types.ObjectId = body.deptId;
 
     if (Object.keys(body).length == Constants.zeroLength) {
-      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided);
+      Logger.error(
+        'addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided
+      );
       this.sendError(res, Status.ERROR_CODES.users.information_not_provided_msg);
       return;
     }
@@ -48,7 +54,9 @@ export default class UserValidator extends BaseValidator {
       return;
     }
     if (!password) {
-      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.password_not_found);
+      Logger.error(
+        'addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.password_not_found
+      );
       this.sendError(res, Status.ERROR_CODES.users.password_not_found_msg);
       return;
     }
@@ -72,6 +80,83 @@ export default class UserValidator extends BaseValidator {
     next();
   };
 
+  validateUserCreateBody: RequestHandler = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    let body: IUser = req.body;
+    let fullName: string = body.fullName;
+    let deptId: Types.ObjectId = body.deptId;
+
+    if (Object.keys(body).length == Constants.zeroLength) {
+      Logger.error(
+        'addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided
+      );
+      this.sendError(res, Status.ERROR_CODES.users.information_not_provided_msg);
+      return;
+    }
+    if (!fullName) {
+      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.name_not_found);
+      this.sendError(res, Status.ERROR_CODES.users.name_not_found_msg);
+      return;
+    }
+    if (typeof fullName != 'string') {
+      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.name_type);
+      this.sendError(res, Status.ERROR_CODES.users.name_type_msg);
+      return;
+    }
+    if (!deptId) {
+      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.dept_not_found);
+      this.sendError(res, Status.ERROR_CODES.users.dept_not_found_msg);
+      return;
+    }
+
+    if (typeof deptId != 'string') {
+      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.dept_type);
+      this.sendError(res, Status.ERROR_CODES.users.dept_type_msg);
+      return;
+    }
+    next();
+  };
+
+  validateLoginBody: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+    let body: IUser = req.body;
+    let email: string = body.email;
+    let password: string = body.password;
+
+    if (Object.keys(body).length == Constants.zeroLength) {
+      Logger.error(
+        'addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided
+      );
+      this.sendError(res, Status.ERROR_CODES.users.information_not_provided_msg);
+      return;
+    }
+    if (!email) {
+      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.email_not_found);
+      this.sendError(res, Status.ERROR_CODES.users.email_not_found_msg);
+      return;
+    }
+    if (typeof email != 'string') {
+      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.email_type);
+      this.sendError(res, Status.ERROR_CODES.users.email_type_msg);
+      return;
+    }
+    if (!password) {
+      Logger.error(
+        'addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.password_not_found
+      );
+      this.sendError(res, Status.ERROR_CODES.users.password_not_found_msg);
+      return;
+    }
+    let nameLen = password.length;
+    if (nameLen < this.passMinLength || nameLen > this.passNameMaxLength) {
+      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.password_length);
+      this.sendError(res, Status.ERROR_CODES.users.password_length_msg);
+      return;
+    }
+    next();
+  };
   // validateUpdateBody: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   //   let body: IUser = req.body;
   //   let deptName: string = body.deptName;

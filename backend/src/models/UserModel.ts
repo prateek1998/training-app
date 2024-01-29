@@ -13,11 +13,11 @@ const UserSchema: Schema = new Schema({
     type: String,
     unique: 'Email already exists',
     match: [/.+\@.+\..+/, 'Please fill a valid email address'],
-    required: 'Email is required',
+    // required: 'Email is required',
   },
   password: {
     type: String,
-    required: true,
+    // required: true,
   },
   resetToken: {
     type: String,
@@ -35,6 +35,10 @@ const UserSchema: Schema = new Schema({
   lastLoginTime: {
     //web
     type: Date,
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
   },
   created_at: {
     type: Date,

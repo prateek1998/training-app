@@ -12,8 +12,17 @@ class UserRoutes {
   }
 
   intializeRoutes() {
-    this.userRouter.route('/register').post(this.validator.validateCreateBody, this.userCtrl.addNewUser);
-    // .get(this.userCtrl.getAllDepts)
+    this.userRouter
+      .route('/auth/register')
+      .post(this.validator.validateAdminCreateBody, this.userCtrl.addNewAdmin);
+    this.userRouter
+      .route('/auth/login')
+      .post(this.validator.validateLoginBody, this.userCtrl.loginUser);
+
+    this.userRouter
+      .route('/')
+      .post(this.validator.validateUserCreateBody, this.userCtrl.addNewUser)
+      .get(this.userCtrl.getAllUsers);
 
     // this.userRouter.route('/:deptId')
     //   .put(this.validator.validateUpdateBody, this.userCtrl.updateDept)

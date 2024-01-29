@@ -22,7 +22,8 @@ export default class BaseController extends BaseResponse {
         return error;
       }
 
-      if (!moment(query.startDate).isSameOrBefore(query.endDate)) return StatusMessage.SERVER_ERRORS.queryStartDateBetweenEndDate;
+      if (!moment(query.startDate).isSameOrBefore(query.endDate))
+        return StatusMessage.SERVER_ERRORS.queryStartDateBetweenEndDate;
     }
 
     if (sortExist !== sortOrderExist) {

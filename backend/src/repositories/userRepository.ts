@@ -25,6 +25,20 @@ export default class UserRepo extends BaseRepo {
     return UserModel.find(matchQuery).sort(sort).skip(skip).limit(limit);
   }
 
+  getUserByName(name: string) {
+    name = name.toLowerCase();
+    return UserModel.findOne({ fullName: name });
+  }
+
+  getUserByEmail(email: string) {
+    email = email.toLowerCase();
+    return UserModel.findOne({ email });
+  }
+
+  updateUser(userId: string, data: IUser) {
+    return UserModel.findOneAndUpdate({ _id: userId }, { $set: data }, { new: true });
+  }
+
   // getDeptByName(title: string) {
   //   return UserModel.findOne({ deptName: title });
   // }

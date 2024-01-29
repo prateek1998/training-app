@@ -18,12 +18,16 @@ export default class LocationValidator extends BaseValidator {
     let body: ILocation = req.body;
     let title: string = body.title;
     if (Object.keys(body).length == Constants.zeroLength) {
-      Logger.error('addNewLocation: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided);
+      Logger.error(
+        'addNewLocation: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided
+      );
       this.sendError(res, Status.ERROR_CODES.loc.information_not_provided_msg);
       return;
     }
     if (!title) {
-      Logger.error('addNewLocation: validateCreateBody: ' + Status.SERVER_ERRORS.loc.name_not_found);
+      Logger.error(
+        'addNewLocation: validateCreateBody: ' + Status.SERVER_ERRORS.loc.name_not_found
+      );
       this.sendError(res, Status.ERROR_CODES.loc.name_not_found_msg);
       return;
     }
@@ -44,12 +48,16 @@ export default class LocationValidator extends BaseValidator {
     let body: ILocation = req.body;
     let title: string = body.title;
     if (Object.keys(body).length == Constants.zeroLength) {
-      Logger.error('updateLocation: validateUpdateBody: ' + Status.SERVER_ERRORS.no_information_provided);
+      Logger.error(
+        'updateLocation: validateUpdateBody: ' + Status.SERVER_ERRORS.no_information_provided
+      );
       this.sendError(res, Status.ERROR_CODES.loc.information_not_provided_msg);
       return;
     }
     if (!title) {
-      Logger.error('updateLocation: validateUpdateBody: ' + Status.SERVER_ERRORS.loc.name_not_found);
+      Logger.error(
+        'updateLocation: validateUpdateBody: ' + Status.SERVER_ERRORS.loc.name_not_found
+      );
       this.sendError(res, Status.ERROR_CODES.loc.name_not_found_msg);
       return;
     }
