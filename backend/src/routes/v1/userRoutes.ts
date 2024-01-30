@@ -24,9 +24,9 @@ class UserRoutes {
       .post(this.validator.validateUserCreateBody, this.userCtrl.addNewUser)
       .get(this.userCtrl.getAllUsers);
 
-    // this.userRouter.route('/:deptId')
-    //   .put(this.validator.validateUpdateBody, this.userCtrl.updateDept)
-    //   .delete(this.userCtrl.deleteDept);
+    this.userRouter.route('/:userId')
+      // .put(this.validator.validateUpdateBody, this.userCtrl.updateDept)
+      .delete(this.userCtrl.deleteUser);
   }
 }
 

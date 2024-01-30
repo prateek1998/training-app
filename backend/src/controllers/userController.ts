@@ -30,7 +30,7 @@ class UserController extends BaseController {
       return this.getDbError(reason);
     });
     if (!deptData) {
-      Logger.error('addNewUser: ' + Status.SERVER_ERRORS.depts.record_not_found);
+      Logger.error('addNewUser: ' + Status.SERVER_ERRORS.users.record_not_found);
       this.sendError(res, Status.ERROR_CODES.depts.record_not_found_msg);
       return;
     }
@@ -158,72 +158,74 @@ class UserController extends BaseController {
     let reqQuery: any = req.query;
     let queryError = this.checkQueryValidate(reqQuery);
     if (queryError) {
-      Logger.error('getAllDepts: queryValidate: ' + queryError);
+      Logger.error('getAllUsers: queryValidate: ' + queryError);
       let error = this.getQueryError(queryError);
       this.sendError(res, this.getModifiedError(error, Status.ERROR_CODES.depts.get_db_error_msg));
       return;
     }
-    
-    // let deptData: any = await this.userRepo.getAllDepts(reqQuery).catch((reason) => {
-    //   console.error('getAllDepts: Failed to get dept reason - ', reason);
-    //   Logger.error('getAllDepts: ' + reason);
-    //   return this.getDbError(reason);
-    // });
-    // if (deptData.error) {
-    //   this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.depts.get_db_error_msg));
-    //   return;
-    // }
-    // if (deptData.length == Constants.zeroLength) {
-    //   Logger.error('getAllDepts: ' + Status.SERVER_ERRORS.depts.record_not_found);
-    //   this.sendError(res, Status.ERROR_CODES.depts.record_not_found_msg);
-    //   return;
-    // }
-    // Logger.info('getAllDepts: ' + Status.SERVER_SUCCESS.dept.data_fetched);
-    // this.sendSuccess(res, Status.HTTP_CODES.SUCCESS, deptData);
+    let userData: any = await this.userRepo.getAllUsers(reqQuery).catch((reason) => {
+      console.error('getAllUsers: Failed to get dept reason - ', reason);
+      Logger.error('getAllUsers: ' + reason);
+      return this.getDbError(reason);
+    });
+    if (userData.error) {
+      this.sendError(res, this.getModifiedError(userData, Status.ERROR_CODES.depts.get_db_error_msg));
+      return;
+    }
+    if (userData.length == Constants.zeroLength) {
+      Logger.error('getAllUsers: ' + Status.SERVER_ERRORS.depts.record_not_found);
+      this.sendError(res, Status.ERROR_CODES.depts.record_not_found_msg);
+      return;
+    }
+    Logger.info('getAllUsers: ' + Status.SERVER_SUCCESS.dept.data_fetched);
+    this.sendSuccess(res, Status.HTTP_CODES.SUCCESS, userData);
   };
 
-  // updateDept = async (req: Request, res: Response) => {
-  //   const { deptId }: any = req.params;
-  //   let data: any = req.body;
-  //   let deptData: any = await this.userRepo.updateDept(deptId, data).catch((reason) => {
-  //     console.error('updateDept: failed to update dept reason - ', reason);
-  //     Logger.error('updateDept: ' + reason);
-  //     return this.getDbError(reason);
-  //   });
-  //   if (!deptData) {
-  //     Logger.error('updateDept: ' + Status.SERVER_ERRORS.depts.record_not_found);
-  //     this.sendError(res, Status.ERROR_CODES.depts.update_db_error_msg);
-  //     return;
-  //   }
-  //   if (deptData.error) {
-  //     this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.depts.update_db_error_msg));
-  //     return;
-  //   }
-  //   let resultJson = this.removeKeyfromObject(deptData, '_id');
-  //   Logger.info('updateDept: ' + Status.SERVER_SUCCESS.dept.data_updated);
-  //   this.sendSuccess(res, Status.HTTP_CODES.SUCCESS, resultJson);
-  // };
+  updateUser = async (req: Request, res: Response) => {
+    const { userId }: any = req.params;
+    let data: any = req.body;
+    let userData: any = await this.userRepo.updateUser(userId, data).catch((reason) => {
+      console.error('updateUser: failed to update dept reason - ', reason);
+      Logger.error('updateUser: ' + reason);
+      return this.getDbError(reason);
+    });
+    if (!userData) {
+      Logger.error('updateUser: ' + Status.SERVER_ERRORS.users.record_not_found);
+      this.sendError(res, Status.ERROR_CODES.users.update_db_error_msg);
+      return;
+    }
+    if (userData.error) {
+      this.sendError(res, this.getModifiedError(userData, Status.ERROR_CODES.users.update_db_error_msg));
+      return;
+    }
+    let resultJson = this.removeKeyfromObject(userData, '_id');
+    Logger.info('updateUser: ' + Status.SERVER_SUCCESS.dept.data_updated);
+    this.sendSuccess(res, Status.HTTP_CODES.SUCCESS, resultJson);
+  };
 
-  // deleteDept = async (req: Request, res: Response) => {
-  //   const { deptId }: any = req.params;
-  //   let deptData: any = await this.userRepo.deleteDept(deptId).catch((reason) => {
-  //     console.error('deleteDept: failed to delete dept reason - ', reason);
-  //     Logger.error('deleteDept: ' + reason);
-  //     return this.getDbError(reason);
-  //   });
-  //   if (!deptData) {
-  //     Logger.error('deleteDept: ' + Status.SERVER_ERRORS.depts.record_not_found);
-  //     this.sendError(res, Status.ERROR_CODES.depts.delete_db_error_msg);
-  //     return;
-  //   }
-  //   if (deptData.error) {
-  //     this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.depts.delete_db_error_msg));
-  //     return;
-  //   }
-  //   let resultJson = this.removeKeyfromObject(deptData, '_id');
-  //   Logger.info('deleteDept: ' + Status.SERVER_SUCCESS.dept.data_deleted);
-  //   this.sendSuccess(res, Status.HTTP_CODES.SUCCESS, resultJson);
-  // };
+  deleteUser = async (req: Request, res: Response) => {
+    const { userId }: any = req.params;
+    let userData: any = await this.userRepo.deleteUser(userId).catch((reason) => {
+      console.error('deleteUser: failed to delete user reason - ', reason);
+      Logger.error('deleteUser: ' + reason);
+      return this.getDbError(reason);
+    });
+    if (!userData) {
+      Logger.error('deleteUser: ' + Status.SERVER_ERRORS.users.record_not_found);
+      this.sendError(res, Status.ERROR_CODES.users.delete_db_error_msg);
+      return;
+    }
+    if (userData.error) {
+      this.sendError(
+        res,
+        this.getModifiedError(userData, Status.ERROR_CODES.users.delete_db_error_msg)
+      );
+      return;
+    }
+    let resultJson = this.removeKeyfromObject(userData, '_id');
+    Logger.info('deleteDept: ' + Status.SERVER_SUCCESS.dept.data_deleted);
+    this.sendSuccess(res, Status.HTTP_CODES.SUCCESS, resultJson);
+  };
 
   private setLastLoginTime = async (user: IUser, platform: string) => {
     console.log('last login time called --', user.email, platform);

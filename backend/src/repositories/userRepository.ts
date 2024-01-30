@@ -11,18 +11,42 @@ export default class UserRepo extends BaseRepo {
   addNewUser(data: IUser) {
     return UserModel.create(data);
   }
-  getAllUsers(query: any) {
+  async getAllUsers(query: any) {
     let matchQuery: MatchObject<RegExp> = {};
     const limit: number = parseInt(query.limit) || Constants.limitLength;
     const skip: number = parseInt(query.skip) || Constants.skipLength;
 
     let regx: RegExp = new RegExp(query.search, 'i');
-    matchQuery['deptName'] = {
+    matchQuery['fullName'] = {
       $regex: regx,
     };
     let sort: SortObject = this.getSort(query, this.defaultSortingOrder);
     this.setStatus(matchQuery, query.type);
-    return UserModel.find(matchQuery).sort(sort).skip(skip).limit(limit);
+    this.setDept(matchQuery, query.deptId);
+    // console.log(matchQuery)
+    let result = await UserModel.aggregate([
+      {
+        '$project':{
+          _id:'$_id',
+          fullName:'$fullName',
+          email:'$email',
+          role:'$role',
+          deptId:"$deptId",
+          isActive:"$isActive"
+        }
+      }, {
+        $match: matchQuery
+      }, {
+        $sort: sort
+      }, {
+        $skip: skip
+      }, {
+        $limit: limit
+      }
+    ])
+
+    return result;  
+    // return UserModel.find(matchQuery).sort(sort).skip(skip).limit(limit);
   }
 
   getUserByName(name: string) {
@@ -38,17 +62,11 @@ export default class UserRepo extends BaseRepo {
   updateUser(userId: string, data: IUser) {
     return UserModel.findOneAndUpdate({ _id: userId }, { $set: data }, { new: true });
   }
-
-  // getDeptByName(title: string) {
-  //   return UserModel.findOne({ deptName: title });
-  // }
-  // updateDept(deptId: string, data: IUser) {
-  //   return UserModel.findOneAndUpdate({ _id: deptId }, { $set: data }, { new: true });
-  // }
-  // deleteDept(deptId: string) {
-  //   let data = {
-  //     isActive: false,
-  //   };
-  //   return UserModel.findOneAndUpdate({ _id: deptId }, { $set: data }, { new: true });
-  // }
+  
+  deleteUser(userId: string) {
+    let data = {
+      isActive: false,
+    };
+    return UserModel.findOneAndUpdate({ _id: userId }, { $set: data }, { new: true });
+  }
 }

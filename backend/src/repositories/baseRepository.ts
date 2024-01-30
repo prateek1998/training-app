@@ -1,6 +1,7 @@
 import moment from 'moment';
 import Constants from '../utils/constants.utils';
 import { SortObject } from '../types';
+import mongoose, { Types } from 'mongoose';
 
 export default class BaseRepo {
   constructor() {}
@@ -15,6 +16,12 @@ export default class BaseRepo {
       case 'active':
       default:
         matchQuery.isActive = true;
+    }
+  }
+
+  protected setDept(matchQuery: any, deptId: any) {
+    if (deptId) {
+      matchQuery.deptId = new Types.ObjectId(deptId);
     }
   }
 
