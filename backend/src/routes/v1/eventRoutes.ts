@@ -1,11 +1,11 @@
 import Router, { Application } from 'express';
 import Container from 'typedi';
-import UserController from '../../controllers/userController';
+import EventController from '../../controllers/eventController';
 import UserValidator from '../../validators/userValidator';
 
 class UserRoutes {
   userRouter: Application = Router();
-  private userCtrl = Container.get(UserController);
+  private eventCtrl = Container.get(EventController);
   private validator = Container.get(UserValidator);
   constructor() {
     this.intializeRoutes();

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import UserRoutes from './userRoutes';
 import DeptRoutes from './deptRoutes';
+import E
 import locationRoutes from './locationRoutes';
 
 class V1RouteHandler {
@@ -14,6 +15,7 @@ class V1RouteHandler {
   private initializeRoutes() {
     this.router.use('/users', UserRoutes);
     this.router.use('/depts', DeptRoutes);
+    this.router.use('/events', EevDeptRoutes);
     this.router.use('/locations', locationRoutes);
   }
 }

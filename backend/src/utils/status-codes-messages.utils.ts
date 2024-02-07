@@ -19,7 +19,6 @@ export default class StatusMessage {
     db_error: 'Database connection issues',
     no_information_provided: 'No Information provided to update',
     Unexpected_field: 'Unexpected field',
-
     // reviews: {
     //   name_not_found: 'Reviewer Name is missing',
     //   name_type: 'Reviewer name type should be string',
@@ -84,6 +83,23 @@ export default class StatusMessage {
       delete_failed: 'Failed to delete the User',
       record_not_found: 'User record not found',
     },
+    events: {
+      title_not_found: 'Title is missing',
+      title_type: 'Title type should be string',
+      description_not_found: 'Description is missing',
+      description_type: 'Description type should be string',
+      location_not_found: 'Location is missing',
+      location_type: 'Location type should be in proper format',
+      trainer_not_found: 'Trainer is missing',
+      trainer_type: 'Trainer type should be in proper format',
+      depts_not_found: 'Depts are missing',
+      dept_type: 'Dept type should be in proper format',
+      add_failed: 'Failed to add new Event',
+      get_failed: 'Failed to fetch Event',
+      update_failed: 'Failed to update the Event',
+      delete_failed: 'Failed to delete the Event',
+      record_not_found: 'Event record not found',
+    },
   };
 
   static readonly ERROR_CODES = {
@@ -130,22 +146,44 @@ export default class StatusMessage {
       user_already_exist: [1070, StatusMessage.SERVER_ERRORS.users.add_failed, 500],
       user_password_not_same: [1071, StatusMessage.SERVER_ERRORS.users.add_failed, 500],
     },
+    events: {
+      information_not_provided_msg: [1072, StatusMessage.SERVER_ERRORS.events.add_failed, 400],
+      title_not_found_msg: [1073, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
+      title_type_msg: [1074, StatusMessage.SERVER_ERRORS.events.title_type, 400],
+      description_not_found_msg: [1075, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
+      description_type_msg: [1076, StatusMessage.SERVER_ERRORS.events.description_type, 400],
+      trainer_not_found_msg: [1077, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
+      trainer_type_msg: [1078, StatusMessage.SERVER_ERRORS.events.trainer_type, 400],
+      location_not_found_msg: [1079, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
+      location_type_msg: [1080, StatusMessage.SERVER_ERRORS.events.location_type, 400],
 
-    // reviews: {
-    //   review_type_msg: [1006, StatusMessage.SERVER_ERRORS.reviews.review_type, 400],
-    //   review_not_found_msg: [1007, StatusMessage.SERVER_ERRORS.reviews.review_not_found, 400],
-    //   rating_not_found_msg: [1008, StatusMessage.SERVER_ERRORS.reviews.rating_not_found, 400],
-    //   rating_type_msg: [1009, StatusMessage.SERVER_ERRORS.reviews.rating_type, 400],
-    //   rating_limit_msg: [1010, StatusMessage.SERVER_ERRORS.reviews.rating_limit, 400],
-    //   isNegative_not_found_msg: [1010, StatusMessage.SERVER_ERRORS.reviews.isNegative_not_found, 400],
-    //   isNegative_type_msg: [1011, StatusMessage.SERVER_ERRORS.reviews.isNegative_type, 400],
-    //   get_db_error_msg: [1013, StatusMessage.SERVER_ERRORS.reviews.get_failed, 500],
-    //   update_db_error_msg: [1014, StatusMessage.SERVER_ERRORS.reviews.update_failed, 500],
-    //   delete_db_error_msg: [1015, StatusMessage.SERVER_ERRORS.reviews.delete_failed, 500],
-    //   get_invalid_id_msg: [1016, StatusMessage.SERVER_ERRORS.reviews.get_failed, 400],
-    //   update_invalid_id_msg: [1017, StatusMessage.SERVER_ERRORS.reviews.update_failed, 400],
-    //   delete_invalid_id_msg: [1018, StatusMessage.SERVER_ERRORS.reviews.delete_failed, 400],
-    // },
+
+
+      
+
+
+
+      
+      add_db_error_msg: [1073, StatusMessage.SERVER_ERRORS.events.add_failed, 500],
+      get_db_error_msg: [1074, StatusMessage.SERVER_ERRORS.events.get_failed, 500],
+      update_db_error_msg: [1075, StatusMessage.SERVER_ERRORS.events.update_failed, 500],
+      delete_db_error_msg: [1076, StatusMessage.SERVER_ERRORS.events.delete_failed, 500],
+      record_not_found_msg: [1077, StatusMessage.SERVER_ERRORS.events.get_failed, 500],
+    
+      // review_type_msg: [1006, StatusMessage.SERVER_ERRORS.reviews.review_type, 400],
+      // review_not_found_msg: [1007, StatusMessage.SERVER_ERRORS.reviews.review_not_found, 400],
+      // rating_not_found_msg: [1008, StatusMessage.SERVER_ERRORS.reviews.rating_not_found, 400],
+      // rating_type_msg: [1009, StatusMessage.SERVER_ERRORS.reviews.rating_type, 400],
+      // rating_limit_msg: [1010, StatusMessage.SERVER_ERRORS.reviews.rating_limit, 400],
+      // isNegative_not_found_msg: [1010, StatusMessage.SERVER_ERRORS.reviews.isNegative_not_found, 400],
+      // isNegative_type_msg: [1011, StatusMessage.SERVER_ERRORS.reviews.isNegative_type, 400],
+      // get_db_error_msg: [1013, StatusMessage.SERVER_ERRORS.reviews.get_failed, 500],
+      // update_db_error_msg: [1014, StatusMessage.SERVER_ERRORS.reviews.update_failed, 500],
+      // delete_db_error_msg: [1015, StatusMessage.SERVER_ERRORS.reviews.delete_failed, 500],
+      // get_invalid_id_msg: [1016, StatusMessage.SERVER_ERRORS.reviews.get_failed, 400],
+      // update_invalid_id_msg: [1017, StatusMessage.SERVER_ERRORS.reviews.update_failed, 400],
+      // delete_invalid_id_msg: [1018, StatusMessage.SERVER_ERRORS.reviews.delete_failed, 400],
+    },
   };
 
   static readonly SERVER_SUCCESS = {
