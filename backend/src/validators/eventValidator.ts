@@ -28,7 +28,7 @@ export default class EventValidator extends BaseValidator {
     let endDate: Date = body.endDate;
     let depts: Types.Array<IDeptartment> = body.depts;
     let trainer: Types.ObjectId = body.trainer;
-    let participants: Types.Array<IParticipant> = body.participants;
+    // let participants: Types.Array<IParticipant> = body.participants;
 
     if (Object.keys(body).length == Constants.zeroLength) {
       Logger.error(
@@ -44,41 +44,61 @@ export default class EventValidator extends BaseValidator {
     }
     if (typeof title != 'string') {
       Logger.error('`addNewEvent`: validateCreateBody: ' + Status.SERVER_ERRORS.events.title_type);
-      this.sendError(res, Status.ERROR_CODES.users.name_type_msg);
+      this.sendError(res, Status.ERROR_CODES.events.title_type_msg);
       return;
     }
-    if (!email) {
-      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.users.email_not_found);
-      this.sendError(res, Status.ERROR_CODES.users.email_not_found_msg);
+    if (!description) {
+      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.description_not_found);
+      this.sendError(res, Status.ERROR_CODES.events.description_not_found_msg);
       return;
     }
-    if (typeof email != 'string') {
-      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.users.email_type);
-      this.sendError(res, Status.ERROR_CODES.users.email_type_msg);
+    if (typeof description != 'string') {
+      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.description_type);
+      this.sendError(res, Status.ERROR_CODES.events.description_type_msg);
       return;
     }
-    if (!password) {
+    if (!startDate) {
+      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.startDate_not_found);
+      this.sendError(res, Status.ERROR_CODES.events.startDate_not_found_msg);
+      return;
+    }
+    if (typeof startDate != 'string') {
+      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.startDate_type);
+      this.sendError(res, Status.ERROR_CODES.events.startDate_type_msg);
+      return;
+    }
+    if (!endDate) {
+      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.endDate_type);
+      this.sendError(res, Status.ERROR_CODES.events.endDate_type_msg);
+      return;
+    }
+    if (typeof endDate != 'string') {
+      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.description_type);
+      this.sendError(res, Status.ERROR_CODES.events.description_type_msg);
+      return;
+    }
+    if (!location) {
       Logger.error(
-        'addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.users.password_not_found
+        'addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.location_not_found
       );
-      this.sendError(res, Status.ERROR_CODES.users.password_not_found_msg);
+      this.sendError(res, Status.ERROR_CODES.events.location_not_found_msg);
       return;
     }
-    let nameLen = password.length;
-    if (nameLen < this.passMinLength || nameLen > this.passNameMaxLength) {
-      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.users.password_length);
-      this.sendError(res, Status.ERROR_CODES.users.password_length_msg);
+    if (typeof location != 'string') {
+      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.location_type);
+      this.sendError(res, Status.ERROR_CODES.events.location_type_msg);
       return;
     }
-    if (!deptId) {
-      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.users.dept_not_found);
-      this.sendError(res, Status.ERROR_CODES.users.dept_not_found_msg);
+    if (!trainer) {
+      Logger.error(
+        'addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.trainer_not_found
+      );
+      this.sendError(res, Status.ERROR_CODES.events.trainer_not_found_msg);
       return;
     }
-
-    if (typeof deptId != 'string') {
-      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.users.dept_type);
-      this.sendError(res, Status.ERROR_CODES.users.dept_type_msg);
+    if (typeof trainer != 'string') {
+      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.trainer_type);
+      this.sendError(res, Status.ERROR_CODES.events.trainer_type_msg);
       return;
     }
     next();

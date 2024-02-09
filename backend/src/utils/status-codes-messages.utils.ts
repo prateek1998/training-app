@@ -88,6 +88,10 @@ export default class StatusMessage {
       title_type: 'Title type should be string',
       description_not_found: 'Description is missing',
       description_type: 'Description type should be string',
+      startDate_not_found: 'Start Date is missing',
+      startDate_type: 'StartDate type should be string',
+      endDate_not_found: 'End Date is missing',
+      endDate_type: 'EndDate type should be string',
       location_not_found: 'Location is missing',
       location_type: 'Location type should be in proper format',
       trainer_not_found: 'Trainer is missing',
@@ -156,6 +160,10 @@ export default class StatusMessage {
       trainer_type_msg: [1078, StatusMessage.SERVER_ERRORS.events.trainer_type, 400],
       location_not_found_msg: [1079, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
       location_type_msg: [1080, StatusMessage.SERVER_ERRORS.events.location_type, 400],
+      startDate_not_found_msg: [1081, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
+      startDate_type_msg: [1082, StatusMessage.SERVER_ERRORS.events.startDate_type, 400],
+      endDate_not_found_msg: [1083, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
+      endDate_type_msg: [1084, StatusMessage.SERVER_ERRORS.events.endDate_type, 400],
 
 
 
