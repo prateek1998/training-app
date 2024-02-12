@@ -101,6 +101,16 @@ export default class EventValidator extends BaseValidator {
       this.sendError(res, Status.ERROR_CODES.events.trainer_type_msg);
       return;
     }
+    if (!depts) {
+      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.depts_not_found);
+      this.sendError(res, Status.ERROR_CODES.events.description_not_found_msg);
+      return;
+    }
+    if (typeof depts != 'object') {
+      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.description_type);
+      this.sendError(res, Status.ERROR_CODES.events.description_type_msg);
+      return;
+    }
     next();
   };
 

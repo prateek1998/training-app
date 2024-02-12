@@ -8,11 +8,15 @@ import { Service } from 'typedi';
 import { IEvents } from '../types';
 import Constants from '../utils/constants.utils';
 import moment from 'moment';
+import LocationRepo from '../repositories/locRepository';
+import UserRepo from '../repositories/userRepository';
 
 @Service()
 class EventController extends BaseController {
   constructor(
     private eventRepo: EventRepo,
+    private locRepo: LocationRepo,
+    private userRepo: UserRepo,
     private deptRepo: DeptRepo
   ) {
     super();
@@ -20,17 +24,53 @@ class EventController extends BaseController {
 
   addNewEvent = async (req: Request, res: Response) => {
     let data: IEvents = req.body;
-    console.log(data);
-    res.json(data);
-    return
-    let deptId = 'asd' //data.deptId;
+    let locationData: any = await this.locRepo.getLocationById(data.location).catch((reason) => {
+      console.error('addNewEvent: failed to get location reason - ', reason);
+      Logger.error('addNewEvent: ' + reason);
+      return this.getDbError(reason);
+    });
+    if (locationData.error) {
+      this.sendError(res,this.getModifiedError(locationData, Status.ERROR_CODES.events.add_db_error_msg))
+      return;
+    }
+    let trainerData: any = await this.userRepo.getUserById(data.trainer).catch((reason) => {
+      console.error('addNewEvent: failed to get trainer reason - ', reason);
+      Logger.error('addNewEvent: ' + reason);
+      return this.getDbError(reason);
+    });
+    if (trainerData.error) {
+      this.sendError(res,this.getModifiedError(locationData, Status.ERROR_CODES.events.add_db_error_msg))
+      return;
+    }
+    // let deptsData: any = await this.deptRepo.getDeptsByIds(data.depts).catch((reason) => {
+    //   console.error('addNewEvent: failed to get depts reason - ', reason);
+    //   Logger.error('addNewEvent: ' + reason);
+    //   return this.getDbError(reason);
+    // });
+    
+    // console.log(deptsData);
+    // let locationData: any = await this.locRepo.getLocationById(data.location).catch((reason) => {
+    //   console.error('addNewEvent: failed to get location reason - ', reason);
+    //   Logger.error('addNewEvent: ' + reason);
+    //   return this.getDbError(reason);
+    // });
+    // if (locationData.error) {
+    //   this.sendError(res,this.getModifiedError(locationData, Status.ERROR_CODES.events.add_db_error_msg))
+    //   return;
+    // }
+
+
+  
+
+  return
+
     let deptData: any = await this.eventRepo.addNewEvent(data).catch((reason) => {
-      console.error('addNewUser: failed to get dept reason - ', reason);
-      Logger.error('addNewUser: ' + reason);
+      console.error('addNewEvent: failed to get dept reason - ', reason);
+      Logger.error('addNewEvent: ' + reason);
       return this.getDbError(reason);
     });
     if (!deptData) {
-      Logger.error('addNewUser: ' + Status.SERVER_ERRORS.users.record_not_found);
+      Logger.error('addNewEvent: ' + Status.SERVER_ERRORS.users.record_not_found);
       this.sendError(res, Status.ERROR_CODES.depts.record_not_found_msg);
       return;
     }

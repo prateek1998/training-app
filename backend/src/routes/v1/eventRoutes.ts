@@ -1,33 +1,26 @@
 import Router, { Application } from 'express';
 import Container from 'typedi';
 import EventController from '../../controllers/eventController';
-import UserValidator from '../../validators/userValidator';
+import EventValidator from '../../validators/eventValidator';
 
-class UserRoutes {
+class EventRoutes {
   userRouter: Application = Router();
   private eventCtrl = Container.get(EventController);
-  private validator = Container.get(UserValidator);
+  private validator = Container.get(EventValidator);
   constructor() {
     this.intializeRoutes();
   }
 
   intializeRoutes() {
     this.userRouter
-      .route('/auth/register')
-      .post(this.validator.validateAdminCreateBody, this.userCtrl.addNewAdmin);
-    this.userRouter
-      .route('/auth/login')
-      .post(this.validator.validateLoginBody, this.userCtrl.loginUser);
-
-    this.userRouter
       .route('/')
-      .post(this.validator.validateUserCreateBody, this.userCtrl.addNewUser)
-      .get(this.userCtrl.getAllUsers);
+      .post(this.validator.validateCreateBody, this.eventCtrl.addNewEvent)
+    //   .get(this.userCtrl.getAllUsers);
 
-    this.userRouter.route('/:userId')
-      .put(this.userCtrl.updateUser)
-      .delete(this.userCtrl.deleteUser);
+    // this.userRouter.route('/:userId')
+    //   .put(this.userCtrl.updateUser)
+    //   .delete(this.userCtrl.deleteUser);
   }
 }
 
-export default new UserRoutes().userRouter;
+export default new EventRoutes().userRouter;

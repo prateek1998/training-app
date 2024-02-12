@@ -3,6 +3,7 @@ import BaseRepo from './baseRepository';
 import UserModel from '../models/UserModel';
 import { IUser, MatchObject, SortObject } from '../types';
 import Constants from '../utils/constants.utils';
+import { Types } from 'mongoose';
 
 @Service()
 export default class UserRepo extends BaseRepo {
@@ -11,6 +12,11 @@ export default class UserRepo extends BaseRepo {
   addNewUser(data: IUser) {
     return UserModel.create(data);
   }
+
+  getUserById(userId: Types.ObjectId) {
+    return UserModel.findOne({ _id: userId });
+  }
+
   async getAllUsers(query: any) {
     let matchQuery: MatchObject<RegExp> = {};
     const limit: number = parseInt(query.limit) || Constants.limitLength;

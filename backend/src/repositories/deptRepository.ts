@@ -16,7 +16,12 @@ export default class DeptRepo extends BaseRepo {
   getDeptById(deptId: Types.ObjectId) {
     return DeptModel.findOne({ _id: deptId });
   }
-
+  
+  getDeptsByIds(deptIds: Array<Types.ObjectId>) {
+    console.log(deptIds)
+    return DeptModel.find({ _id: deptIds });
+  }
+  
   getAllDepts(query: any) {
     let matchQuery: MatchObject<RegExp> = {};
     const limit: number = parseInt(query.limit) || Constants.limitLength;
@@ -30,6 +35,7 @@ export default class DeptRepo extends BaseRepo {
     this.setStatus(matchQuery, query.type);
     return DeptModel.find(matchQuery).sort(sort).skip(skip).limit(limit);
   }
+
 
   updateDept(deptId: string, data: IDeptartment) {
     return DeptModel.findOneAndUpdate({ _id: deptId }, { $set: data }, { new: true });

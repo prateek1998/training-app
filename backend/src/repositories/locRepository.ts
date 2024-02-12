@@ -3,12 +3,17 @@ import BaseRepo from './baseRepository';
 import LocationModel from '../models/LocationModel';
 import { ILocation, MatchObject, SortObject } from '../types';
 import Constants from '../utils/constants.utils';
+import { Types } from 'mongoose';
 
 @Service()
 export default class LocationRepo extends BaseRepo {
   private defaultSortingOrder = ['title', 'ASC'];
   addNewLocation(data: ILocation) {
     return LocationModel.create(data);
+  }
+
+  getLocationById(locId: Types.ObjectId) {
+    return LocationModel.findOne({ _id: locId });
   }
 
   getAllLocations(query: any) {

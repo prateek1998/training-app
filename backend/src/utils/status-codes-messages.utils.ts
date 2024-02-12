@@ -87,7 +87,7 @@ export default class StatusMessage {
       title_not_found: 'Title is missing',
       title_type: 'Title type should be string',
       description_not_found: 'Description is missing',
-      description_type: 'Description type should be string',
+      description_type: 'Description type should be array of Ids',
       startDate_not_found: 'Start Date is missing',
       startDate_type: 'StartDate type should be string',
       endDate_not_found: 'End Date is missing',
