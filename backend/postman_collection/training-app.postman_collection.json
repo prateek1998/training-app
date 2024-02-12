@@ -19,7 +19,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "  {\r\n    \"fullName\": \"Prateek Saini\",\r\n    \"email\":\"prateek.saini@nebulaholdings.co\",\r\n    \"password\": \"prateek123\",\r\n    \"deptId\": \"65b65e768d7efcda99108ea4\"\r\n  }",
+									"raw": "  {\r\n    \"fullName\": \"Prateek Saini\",\r\n    \"email\":\"prateek.saini@nebulaholdings.co\",\r\n    \"password\": \"prateek123\",\r\n    \"deptId\": \"65b65e718d7efcda99108ea0\"\r\n  }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -74,7 +74,228 @@
 					]
 				},
 				{
+					"name": "register new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"fullName\": \"test user\",\r\n    \"deptId\": \"65b65e768d7efcda99108ea4\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users?search=",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "active",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "2023-02-23",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "2023-02-22",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "fullName",
+									"disabled": true
+								},
+								{
+									"key": "sortOrder",
+									"value": "ASC",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "skip",
+									"value": "02",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "deptId",
+									"value": "65b65e718d7efcda99108ea0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update users",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete users",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "65b8bd04836964b9c6a3626e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update users",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "65b8bd04836964b9c6a3626e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "events",
+			"item": [
+				{
+					"name": "add new event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"hq101\",\r\n    \"description\": \"test12\",\r\n    \"location\":\"65b65e3b8d7efcda99108e98\",\r\n    \"startDate\":\"2024/2/1\",\r\n    \"endDate\":\"2024/2/1\",\r\n    \"trainer\":\"65b8bd04836964b9c6a3626e\",\r\n    \"depts\":[\"65b65e718d7efcda99108ea0\",\"65b65e848d7efcda99108ea6\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all depts Copy",
 					"event": [
 						{
 							"listen": "test",
@@ -156,13 +377,13 @@
 					"response": []
 				},
 				{
-					"name": "register new user",
+					"name": "update dept Copy",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "  {\r\n    \"fullName\": \"Prateek Saini\",\r\n    \"email\":\"prateek.saini@nebulaholdings.co\",\r\n    \"password\": \"prateek123\",\r\n    \"deptId\": \"65b65e768d7efcda99108ea4\"\r\n  }",
+							"raw": "{\r\n    \"deptName\":\"prateek123\",\r\n    \"deptHead\":\"12asdasd\",\r\n    \"isActive\": true\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -170,64 +391,27 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/users/auth/register",
+							"raw": "{{baseUrl}}/api/v1/depts/:id",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"users",
-								"auth",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update users",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/users",
-							"host": [
-								"{{baseUrl}}"
+								"depts",
+								":id"
 							],
-							"path": [
-								"api",
-								"v1",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/users",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users"
+							"variable": [
+								{
+									"key": "id",
+									"value": "65ae6792588f684dee8e8824"
+								}
 							]
 						}
 					},
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "events",
-			"item": []
 		},
 		{
 			"name": "depts",
