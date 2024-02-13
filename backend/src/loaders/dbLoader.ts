@@ -6,9 +6,7 @@ import Status from '../utils/status-codes-messages.utils';
 
 export default class Database {
   public static init() {
-    const mongoURI: string = process.env.MONGODB_URI
-      ? process.env.MONGODB_URI
-      : 'mongodb://127.0.0.1:27017/boilerdatabase';
+    const mongoURI: string = process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://127.0.0.1:27017/boilerdatabase';
     mongoose.set('strictQuery', false);
     mongoose.connect(mongoURI);
 

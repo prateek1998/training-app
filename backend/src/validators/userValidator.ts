@@ -15,11 +15,7 @@ export default class UserValidator extends BaseValidator {
     super();
   }
 
-  validateAdminCreateBody: RequestHandler = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
+  validateAdminCreateBody: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     let body: IUser = req.body;
     let fullName: string = body.fullName;
     let email: string = body.email;
@@ -27,9 +23,7 @@ export default class UserValidator extends BaseValidator {
     let deptId: Types.ObjectId = body.deptId;
 
     if (Object.keys(body).length == Constants.zeroLength) {
-      Logger.error(
-        'addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided
-      );
+      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided);
       this.sendError(res, Status.ERROR_CODES.users.information_not_provided_msg);
       return;
     }
@@ -54,9 +48,7 @@ export default class UserValidator extends BaseValidator {
       return;
     }
     if (!password) {
-      Logger.error(
-        'addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.password_not_found
-      );
+      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.password_not_found);
       this.sendError(res, Status.ERROR_CODES.users.password_not_found_msg);
       return;
     }
@@ -80,19 +72,13 @@ export default class UserValidator extends BaseValidator {
     next();
   };
 
-  validateUserCreateBody: RequestHandler = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
+  validateUserCreateBody: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     let body: IUser = req.body;
     let fullName: string = body.fullName;
     let deptId: Types.ObjectId = body.deptId;
 
     if (Object.keys(body).length == Constants.zeroLength) {
-      Logger.error(
-        'addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided
-      );
+      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided);
       this.sendError(res, Status.ERROR_CODES.users.information_not_provided_msg);
       return;
     }
@@ -126,9 +112,7 @@ export default class UserValidator extends BaseValidator {
     let password: string = body.password;
 
     if (Object.keys(body).length == Constants.zeroLength) {
-      Logger.error(
-        'addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided
-      );
+      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided);
       this.sendError(res, Status.ERROR_CODES.users.information_not_provided_msg);
       return;
     }
@@ -143,9 +127,7 @@ export default class UserValidator extends BaseValidator {
       return;
     }
     if (!password) {
-      Logger.error(
-        'addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.password_not_found
-      );
+      Logger.error('addNewUser: validateCreateBody: ' + Status.SERVER_ERRORS.users.password_not_found);
       this.sendError(res, Status.ERROR_CODES.users.password_not_found_msg);
       return;
     }

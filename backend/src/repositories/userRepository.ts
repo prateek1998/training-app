@@ -29,29 +29,34 @@ export default class UserRepo extends BaseRepo {
     let sort: SortObject = this.getSort(query, this.defaultSortingOrder);
     this.setStatus(matchQuery, query.type);
     this.setDept(matchQuery, query.deptId);
+    this.setRole(matchQuery, query.role);
     // console.log(matchQuery)
     let result = await UserModel.aggregate([
       {
-        '$project':{
-          _id:'$_id',
-          fullName:'$fullName',
-          email:'$email',
-          role:'$role',
-          deptId:"$deptId",
-          isActive:"$isActive"
-        }
-      }, {
-        $match: matchQuery
-      }, {
-        $sort: sort
-      }, {
-        $skip: skip
-      }, {
-        $limit: limit
-      }
-    ])
+        $match: matchQuery,
+      },
+      {
+        $sort: sort,
+      },
+      {
+        $skip: skip,
+      },
+      {
+        $limit: limit,
+      },
+      {
+        $project: {
+          _id: '$_id',
+          fullName: '$fullName',
+          email: '$email',
+          role: '$role',
+          deptId: '$deptId',
+          isActive: '$isActive',
+        },
+      },
+    ]);
 
-    return result;  
+    return result;
     // return UserModel.find(matchQuery).sort(sort).skip(skip).limit(limit);
   }
 
@@ -68,7 +73,7 @@ export default class UserRepo extends BaseRepo {
   updateUser(userId: string, data: IUser) {
     return UserModel.findOneAndUpdate({ _id: userId }, { $set: data }, { new: true });
   }
-  
+
   deleteUser(userId: string) {
     let data = {
       isActive: false,

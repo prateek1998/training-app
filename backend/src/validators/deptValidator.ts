@@ -17,9 +17,7 @@ export default class DeptValidator extends BaseValidator {
     let body: IDeptartment = req.body;
     let deptName: string = body.deptName;
     if (Object.keys(body).length == Constants.zeroLength) {
-      Logger.error(
-        'addNewDept: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided
-      );
+      Logger.error('addNewDept: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided);
       this.sendError(res, Status.ERROR_CODES.depts.information_not_provided_msg);
       return;
     }
@@ -43,9 +41,7 @@ export default class DeptValidator extends BaseValidator {
     let deptHead: Types.ObjectId = body.deptHead;
 
     if (Object.keys(body).length == Constants.zeroLength) {
-      Logger.error(
-        'updateDept: validateUpdateBody: ' + Status.SERVER_ERRORS.no_information_provided
-      );
+      Logger.error('updateDept: validateUpdateBody: ' + Status.SERVER_ERRORS.no_information_provided);
       this.sendError(res, Status.ERROR_CODES.depts.information_not_provided_msg);
       return;
     }

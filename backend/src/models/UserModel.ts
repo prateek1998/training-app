@@ -46,7 +46,7 @@ const UserSchema: Schema = new Schema({
   },
   deptId: {
     type: Schema.Types.ObjectId,
-    ref: 'Deptarment',
+    ref: 'Department',
   },
   created_by: {
     type: Schema.Types.ObjectId,

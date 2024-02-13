@@ -35,10 +35,7 @@ class UserController extends BaseController {
       return;
     }
     if (deptData.error) {
-      this.sendError(
-        res,
-        this.getModifiedError(deptData, Status.ERROR_CODES.users.add_db_error_msg)
-      );
+      this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.users.add_db_error_msg));
       return;
     }
     let userExistData: any = await this.userRepo.getUserByName(data.fullName).catch((reason) => {
@@ -60,10 +57,7 @@ class UserController extends BaseController {
       return this.getDbError(reason);
     });
     if (userData.error) {
-      this.sendError(
-        res,
-        this.getModifiedError(userData, Status.ERROR_CODES.users.add_db_error_msg)
-      );
+      this.sendError(res, this.getModifiedError(userData, Status.ERROR_CODES.users.add_db_error_msg));
       return;
     }
     let resultJson = this.removeKeyfromObject(userData, '_id');
@@ -85,10 +79,7 @@ class UserController extends BaseController {
       return;
     }
     if (deptData.error) {
-      this.sendError(
-        res,
-        this.getModifiedError(deptData, Status.ERROR_CODES.users.add_db_error_msg)
-      );
+      this.sendError(res, this.getModifiedError(deptData, Status.ERROR_CODES.users.add_db_error_msg));
       return;
     }
     let userExistData: any = await this.userRepo.getUserByName(data.fullName).catch((reason) => {
@@ -107,10 +98,7 @@ class UserController extends BaseController {
       return this.getDbError(reason);
     });
     if (userData.error) {
-      this.sendError(
-        res,
-        this.getModifiedError(userData, Status.ERROR_CODES.users.add_db_error_msg)
-      );
+      this.sendError(res, this.getModifiedError(userData, Status.ERROR_CODES.users.add_db_error_msg));
       return;
     }
     let resultJson = this.removeKeyfromObject(userData, '_id');
@@ -216,10 +204,7 @@ class UserController extends BaseController {
       return;
     }
     if (userData.error) {
-      this.sendError(
-        res,
-        this.getModifiedError(userData, Status.ERROR_CODES.users.delete_db_error_msg)
-      );
+      this.sendError(res, this.getModifiedError(userData, Status.ERROR_CODES.users.delete_db_error_msg));
       return;
     }
     let resultJson = this.removeKeyfromObject(userData, '_id');

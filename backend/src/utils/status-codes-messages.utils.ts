@@ -46,6 +46,7 @@ export default class StatusMessage {
       update_failed: 'Failed to update the Dept',
       delete_failed: 'Failed to delete the Dept',
       record_not_found: 'Department record not found',
+      id_not_found: 'Department Id not found',
       // name_length: 'Reviewer Name length should be in 3 to 200 characters',
       // review_not_found: 'Review is missing',
       // review_type: 'Review type should be string',
@@ -165,19 +166,12 @@ export default class StatusMessage {
       endDate_not_found_msg: [1083, StatusMessage.SERVER_ERRORS.missing_field_failed, 400],
       endDate_type_msg: [1084, StatusMessage.SERVER_ERRORS.events.endDate_type, 400],
 
-
-
-      
-
-
-
-      
       add_db_error_msg: [1073, StatusMessage.SERVER_ERRORS.events.add_failed, 500],
       get_db_error_msg: [1074, StatusMessage.SERVER_ERRORS.events.get_failed, 500],
       update_db_error_msg: [1075, StatusMessage.SERVER_ERRORS.events.update_failed, 500],
       delete_db_error_msg: [1076, StatusMessage.SERVER_ERRORS.events.delete_failed, 500],
       record_not_found_msg: [1077, StatusMessage.SERVER_ERRORS.events.get_failed, 500],
-    
+
       // review_type_msg: [1006, StatusMessage.SERVER_ERRORS.reviews.review_type, 400],
       // review_not_found_msg: [1007, StatusMessage.SERVER_ERRORS.reviews.review_not_found, 400],
       // rating_not_found_msg: [1008, StatusMessage.SERVER_ERRORS.reviews.rating_not_found, 400],
@@ -213,6 +207,12 @@ export default class StatusMessage {
       data_fetched: 'Users data fetched successfully',
       data_updated: 'User data updated successfully',
       data_deleted: 'User data delete successfully',
+    },
+    events: {
+      data_added: 'Event data saved successfully',
+      data_fetched: 'Events data fetched successfully',
+      data_updated: 'Event data updated successfully',
+      data_deleted: 'Event data delete successfully',
     },
   };
 

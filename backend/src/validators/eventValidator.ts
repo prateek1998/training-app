@@ -15,25 +15,19 @@ export default class EventValidator extends BaseValidator {
     super();
   }
 
-  validateCreateBody: RequestHandler = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
+  validateCreateBody: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     let body: IEvents = req.body;
     let title: string = body.title;
     let description: string = body.description;
     let location: Types.ObjectId = body.location;
     let startDate: Date = body.startDate;
     let endDate: Date = body.endDate;
-    let depts: Types.Array<IDeptartment> = body.depts;
+    let depts: Array<Types.ObjectId> = body.depts;
     let trainer: Types.ObjectId = body.trainer;
     // let participants: Types.Array<IParticipant> = body.participants;
 
     if (Object.keys(body).length == Constants.zeroLength) {
-      Logger.error(
-        'addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided
-      );
+      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.no_information_provided);
       this.sendError(res, Status.ERROR_CODES.events.information_not_provided_msg);
       return;
     }
@@ -78,9 +72,7 @@ export default class EventValidator extends BaseValidator {
       return;
     }
     if (!location) {
-      Logger.error(
-        'addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.location_not_found
-      );
+      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.location_not_found);
       this.sendError(res, Status.ERROR_CODES.events.location_not_found_msg);
       return;
     }
@@ -90,9 +82,7 @@ export default class EventValidator extends BaseValidator {
       return;
     }
     if (!trainer) {
-      Logger.error(
-        'addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.trainer_not_found
-      );
+      Logger.error('addNewEvent: validateCreateBody: ' + Status.SERVER_ERRORS.events.trainer_not_found);
       this.sendError(res, Status.ERROR_CODES.events.trainer_not_found_msg);
       return;
     }

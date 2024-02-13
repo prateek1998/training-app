@@ -4,7 +4,7 @@ import { SortObject } from '../types';
 import mongoose, { Types } from 'mongoose';
 
 export default class BaseRepo {
-  constructor() {}
+  constructor() { }
 
   protected setStatus(matchQuery: any, type: string) {
     switch (type) {
@@ -19,6 +19,12 @@ export default class BaseRepo {
     }
   }
 
+  protected setRole(matchQuery: any, role: string) {
+    if (role) {
+      matchQuery.role = role;
+    }
+  }
+
   protected setDept(matchQuery: any, deptId: any) {
     if (deptId) {
       matchQuery.deptId = new Types.ObjectId(deptId);
@@ -27,11 +33,10 @@ export default class BaseRepo {
 
   protected setQueryDate(matchQuery: any, startDate: any, endDate: any) {
     if (startDate && endDate) {
-      let startedDate: Date = new Date(moment(startDate).format('YYYY-MM-DDT00:00:00.000') + 'Z');
-      let endedDate: Date = new Date(moment(endDate).format('YYYY-MM-DDT23:59:59.999') + 'Z');
-      matchQuery.createdAt = {
-        // [Sequelize.Op.between]: [startedDate, endedDate],
-      };
+      matchQuery["created_at"] = {
+        "$gte": startDate,
+        "$lte": endDate
+      }
     }
   }
 
@@ -45,8 +50,7 @@ export default class BaseRepo {
         tmpOrder[query.sortBy] = 1;
         break;
       default:
-        tmpOrder[defaultSorting[Constants.zeroLength]] =
-          defaultSorting[Constants.oneLength] == 'ASC' ? 1 : -1;
+        tmpOrder[defaultSorting[Constants.zeroLength]] = defaultSorting[Constants.oneLength] == 'ASC' ? 1 : -1;
         break;
     }
     return tmpOrder;

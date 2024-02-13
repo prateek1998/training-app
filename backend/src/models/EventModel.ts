@@ -10,11 +10,11 @@ const EventSchema: Schema = new Schema({
     type: String,
     required: true,
   },
-  locationId: {
+  location: {
     type: Schema.Types.ObjectId,
     ref: 'Location',
   },
-  trainerId: {
+  trainer: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
@@ -26,7 +26,7 @@ const EventSchema: Schema = new Schema({
     type: Date,
     required: true,
   },
-  deptIds: [
+  depts: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Department',
@@ -50,6 +50,10 @@ const EventSchema: Schema = new Schema({
       },
     },
   ],
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
   created_at: {
     type: Date,
     default: Date.now,

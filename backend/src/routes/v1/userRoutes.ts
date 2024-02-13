@@ -12,21 +12,15 @@ class UserRoutes {
   }
 
   intializeRoutes() {
-    this.userRouter
-      .route('/auth/register')
-      .post(this.validator.validateAdminCreateBody, this.userCtrl.addNewAdmin);
-    this.userRouter
-      .route('/auth/login')
-      .post(this.validator.validateLoginBody, this.userCtrl.loginUser);
+    this.userRouter.route('/auth/register').post(this.validator.validateAdminCreateBody, this.userCtrl.addNewAdmin);
+    this.userRouter.route('/auth/login').post(this.validator.validateLoginBody, this.userCtrl.loginUser);
 
     this.userRouter
       .route('/')
       .post(this.validator.validateUserCreateBody, this.userCtrl.addNewUser)
       .get(this.userCtrl.getAllUsers);
 
-    this.userRouter.route('/:userId')
-      .put(this.userCtrl.updateUser)
-      .delete(this.userCtrl.deleteUser);
+    this.userRouter.route('/:userId').put(this.userCtrl.updateUser).delete(this.userCtrl.deleteUser);
   }
 }
 

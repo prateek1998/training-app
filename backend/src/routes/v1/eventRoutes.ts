@@ -12,10 +12,8 @@ class EventRoutes {
   }
 
   intializeRoutes() {
-    this.userRouter
-      .route('/')
-      .post(this.validator.validateCreateBody, this.eventCtrl.addNewEvent)
-    //   .get(this.userCtrl.getAllUsers);
+    this.userRouter.route('/').post(this.validator.validateCreateBody, this.eventCtrl.addNewEvent)
+      .get(this.eventCtrl.getAllEvents);
 
     // this.userRouter.route('/:userId')
     //   .put(this.userCtrl.updateUser)

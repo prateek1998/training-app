@@ -34,7 +34,7 @@ export interface IEvents extends Document {
   location: Types.ObjectId;
   startDate: Date;
   endDate: Date;
-  depts: Types.Array<IDeptartment>;
+  depts: Array<Types.ObjectId>;
   trainer: Types.ObjectId;
   participants: Types.Array<IParticipant>;
 }
