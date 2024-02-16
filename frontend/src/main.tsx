@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {Suspense, lazy} from 'react';
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+
+
+const LazyApp = lazy(()=> import('./App.tsx'));
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <LazyApp />
   </React.StrictMode>,
 )
